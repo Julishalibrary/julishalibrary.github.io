@@ -24,6 +24,7 @@ const papersData = [
         featured: true,
         pages: 42,
         difficulty: "Medium",
+        pdfUrl: "papers/mathematics/algebra-fundamentals.pdf",
         url: "#"
     },
     {
@@ -39,6 +40,7 @@ const papersData = [
         featured: true,
         pages: 56,
         difficulty: "Hard",
+        pdfUrl: "papers/physics/mechanics-motion.pdf",
         url: "#"
     },
     {
@@ -54,6 +56,7 @@ const papersData = [
         featured: false,
         pages: 48,
         difficulty: "Hard",
+        pdfUrl: "papers/chemistry/organic-chemistry.pdf",
         url: "#"
     },
     {
@@ -69,6 +72,7 @@ const papersData = [
         featured: false,
         pages: 38,
         difficulty: "Medium",
+        pdfUrl: "papers/biology/cell-biology.pdf",
         url: "#"
     },
     {
@@ -84,6 +88,7 @@ const papersData = [
         featured: false,
         pages: 64,
         difficulty: "Medium",
+        pdfUrl: "papers/english/shakespeare-works.pdf",
         url: "#"
     },
     {
@@ -99,6 +104,7 @@ const papersData = [
         featured: false,
         pages: 52,
         difficulty: "Easy",
+        pdfUrl: "papers/history/world-war-2.pdf",
         url: "#"
     },
     {
@@ -114,6 +120,7 @@ const papersData = [
         featured: false,
         pages: 45,
         difficulty: "Hard",
+        pdfUrl: "papers/mathematics/geometry-trigonometry.pdf",
         url: "#"
     },
     {
@@ -129,6 +136,7 @@ const papersData = [
         featured: false,
         pages: 40,
         difficulty: "Hard",
+        pdfUrl: "papers/physics/thermodynamics.pdf",
         url: "#"
     },
     {
@@ -144,6 +152,7 @@ const papersData = [
         featured: true,
         pages: 36,
         difficulty: "Easy",
+        pdfUrl: "papers/chemistry/periodic-table.pdf",
         url: "#"
     },
     {
@@ -159,6 +168,7 @@ const papersData = [
         featured: false,
         pages: 50,
         difficulty: "Hard",
+        pdfUrl: "papers/biology/evolution-genetics.pdf",
         url: "#"
     },
     {
@@ -174,6 +184,7 @@ const papersData = [
         featured: false,
         pages: 44,
         difficulty: "Easy",
+        pdfUrl: "papers/english/grammar-composition.pdf",
         url: "#"
     },
     {
@@ -189,6 +200,7 @@ const papersData = [
         featured: false,
         pages: 58,
         difficulty: "Medium",
+        pdfUrl: "papers/history/ancient-civilizations.pdf",
         url: "#"
     }
 ];
@@ -199,6 +211,12 @@ let filteredPapers = [...papersData];
 let selectedPapers = [];
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 let currentPreviewedPaper = null;
+
+// PDF Viewer State
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -421,11 +439,20 @@ function filterPapers() {
  * Download paper (placeholder function)
  */
 function downloadPaper(title) {
-    alert(`Downloading: ${title}\n\nIn a real implementation, this would download the PDF file for this paper.`);
+    if (currentPreviewedPaper && currentPreviewedPaper.pdfUrl) {
+        const link = document.createElement('a');
+        link.href = currentPreviewedPaper.pdfUrl;
+        link.download = title.toLowerCase().replace(/\s+/g, '-') + '.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } else {
+        alert(`Downloading: ${title}\n\nIn a real implementation, this would download the PDF file for this paper.`);
+    }
     // In production, you would:
     // 1. Create actual PDF files
-    // 2. Store them in a files/ or assets/ directory
-    // 3. Link directly to them: window.location.href = 'files/paper-name.pdf';
+    // 2. Store them in a papers/ directory organized by subject
+    // 3. Link directly to them: window.location.href = 'papers/subject/paper-name.pdf';
 }
 
 /**
@@ -583,6 +610,14 @@ function previewPaper(paperId) {
     // Reset difficulty voting
     document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('selected'));
     document.getElementById('difficultyFeedback').style.display = 'none';
+    
+    // Load PDF if available
+    if (paper.pdfUrl) {
+        loadPDF(paper.pdfUrl);
+    } else {
+        document.getElementById('pdfViewerSection').style.display = 'none';
+        document.getElementById('viewFullPreviewBtn').style.display = 'none';
+    }
     
     document.getElementById('previewModal').style.display = 'flex';
 }
@@ -770,4 +805,93 @@ function showRelatedPapers(paperId) {
 
 function closeRelatedPapers() {
     document.getElementById('relatedPapersModal').style.display = 'none';
+}
+// ========== PDF Viewer Functions ==========
+
+// Set up PDF.js worker
+if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
+// Load and display PDF
+function loadPDF(pdfUrl) {
+    if (!pdfUrl || typeof pdfjsLib === 'undefined') {
+        alert('PDF preview not available for this file.');
+        return;
+    }
+    
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    
+    pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+        pdfDoc = pdf;
+        document.getElementById('totalPages').textContent = pdf.numPages;
+        pageNum = 1;
+        renderPage(pageNum);
+        document.getElementById('pdfViewerSection').style.display = 'block';
+        document.getElementById('viewFullPreviewBtn').style.display = 'inline-block';
+    }).catch(function(error) {
+        console.error('Error loading PDF:', error);
+        alert('Could not load PDF preview. You can still download the file.');
+        document.getElementById('pdfViewerSection').style.display = 'none';
+        document.getElementById('viewFullPreviewBtn').style.display = 'none';
+    });
+}
+
+// Render PDF page
+function renderPage(num) {
+    if (!pdfDoc) return;
+    
+    pageRendering = true;
+    pdfDoc.getPage(num).then(function(page) {
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const viewport = page.getViewport({scale: 1.5});
+        
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+        
+        page.render(renderContext).promise.then(function() {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+    
+    document.getElementById('currentPage').textContent = num;
+}
+
+// Next page
+function nextPage() {
+    if (pageNum >= pdfDoc.numPages) return;
+    pageNumPending = pageNum + 1;
+    if (!pageRendering) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+    }
+    pageNum++;
+}
+
+// Previous page
+function previousPage() {
+    if (pageNum <= 1) return;
+    pageNumPending = pageNum - 1;
+    if (!pageRendering) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+    }
+    pageNum--;
+}
+
+// View full PDF in new tab
+function viewFullPDF() {
+    if (currentPreviewedPaper && currentPreviewedPaper.pdfUrl) {
+        window.open(currentPreviewedPaper.pdfUrl, '_blank');
+    }
 }
