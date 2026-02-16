@@ -208,7 +208,7 @@ function filterPapers() {
  * Download paper (placeholder function)
  */
 function downloadPaper(title) {
-    alert(`Downloading: ${title}\n\nIn a real implementation, this would download the PDF file for this paper.`);
+    alert(`Downloading: $(href:google.com/search?q=${encodeURIComponent(title)}+pdf)`)
     // In production, you would:
     // 1. Create actual PDF files
     // 2. Store them in a files/ or assets/ directory
