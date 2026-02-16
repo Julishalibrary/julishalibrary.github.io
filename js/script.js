@@ -249,6 +249,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Paper Submission form
+    const submissionForm = document.getElementById('submissionForm');
+    if (submissionForm) {
+        // Form automatically handled by handlePaperSubmission()
+        // Just add file size validation
+        const fileInput = document.getElementById('submissionFile');
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                const maxSize = 10 * 1024 * 1024; // 10MB
+                if (this.files[0] && this.files[0].size > maxSize) {
+                    alert('⚠️ File is too large! Maximum size is 10MB.');
+                    this.value = '';
+                }
+            });
+        }
+    }
+
     // Navbar search input syncing with page search
     const navSearch = document.getElementById('navSearchInput');
     const navClear = document.getElementById('navClearBtn');
@@ -903,4 +920,91 @@ function viewFullPDF() {
     if (currentPreviewedPaper && currentPreviewedPaper.pdfUrl) {
         window.open(currentPreviewedPaper.pdfUrl, '_blank');
     }
+}
+
+// Handle Paper Submission
+function handlePaperSubmission(event) {
+    event.preventDefault();
+    
+    const formData = {
+        timestamp: new Date().toISOString(),
+        name: document.getElementById('submissionName').value,
+        email: document.getElementById('submissionEmail').value,
+        title: document.getElementById('submissionTitle').value,
+        subject: document.getElementById('submissionSubject').value,
+        level: document.getElementById('submissionLevel').value,
+        description: document.getElementById('submissionDescription').value,
+        difficulty: document.getElementById('submissionDifficulty').value,
+        fileSize: document.getElementById('submissionFile').files[0]?.size,
+        fileName: document.getElementById('submissionFile').files[0]?.name,
+        status: 'pending_review'
+    };
+    
+    // Get existing submissions or create new array
+    let submissions = JSON.parse(localStorage.getItem('submissions_papers')) || [];
+    
+    // Add new submission
+    submissions.push(formData);
+    
+    // Save to localStorage
+    localStorage.setItem('submissions_papers', JSON.stringify(submissions));
+    localStorage.setItem('submissions_email', formData.email);
+    
+    // Show success message
+    const statusDiv = document.getElementById('submissionStatus');
+    statusDiv.className = 'submission-status success';
+    statusDiv.innerHTML = `
+        <p>✅ Thank you for your submission!</p>
+        <p>We've received your paper: <strong>${formData.title}</strong></p>
+        <p>Our team will review it shortly. Check your email (${formData.email}) for updates.</p>
+    `;
+    statusDiv.style.display = 'block';
+    
+    // Log submission for console access
+    console.log('📝 Paper Submitted:', formData);
+    console.log('💾 All submissions:', submissions);
+    console.log('To review submissions in browser console, run: JSON.parse(localStorage.getItem("submissions_papers"))');
+    
+    // Reset form
+    document.getElementById('submissionForm').reset();
+    
+    // Show export option
+    setTimeout(() => {
+        statusDiv.innerHTML += `
+            <p style="font-size: 0.9rem; margin-top: 1rem;">
+                <strong>Admin Note:</strong> Run this in browser console to export submissions:
+                <br><code>JSON.stringify(JSON.parse(localStorage.getItem('submissions_papers')), null, 2)</code>
+            </p>
+        `;
+    }, 1000);
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        statusDiv.style.display = 'none';
+    }, 8000);
+}
+
+// Export submissions (for admin use)
+function exportSubmissions() {
+    const submissions = JSON.parse(localStorage.getItem('submissions_papers')) || [];
+    const dataStr = JSON.stringify(submissions, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `submissions-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+}
+
+// View submissions count (for admin dashboard)
+function getSubmissionsCount() {
+    const submissions = JSON.parse(localStorage.getItem('submissions_papers')) || [];
+    return submissions.length;
+}
+
+// View pending submissions (for admin)
+function getPendingSubmissions() {
+    const submissions = JSON.parse(localStorage.getItem('submissions_papers')) || [];
+    return submissions.filter(s => s.status === 'pending_review');
 }

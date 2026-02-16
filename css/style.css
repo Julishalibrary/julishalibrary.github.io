@@ -1353,3 +1353,130 @@ body {
         font-size: 1rem;
     }
 }
+
+/* Contact & Submission Section Styles */
+.contact-section {
+    background-color: var(--white);
+    padding: 3rem 0;
+}
+
+.submission-section {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(30, 64, 175, 0.05));
+    padding: 3rem 0;
+    margin: 2rem 0;
+}
+
+.submission-section > .container > p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #6b7280;
+}
+
+.contact-form,
+.submission-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--white);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--secondary-color);
+}
+
+.form-group input[type="file"] {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.2rem;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.terms-checkbox label {
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.submission-status {
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.submission-status.success {
+    background-color: #d1fae5;
+    border: 2px solid #10b981;
+    color: #065f46;
+}
+
+.submission-status.error {
+    background-color: #fee2e2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+}
+
+.submission-status.info {
+    background-color: #dbeafe;
+    border: 2px solid #3b82f6;
+    color: #1e40af;
+}
+
