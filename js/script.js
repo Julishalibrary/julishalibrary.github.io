@@ -51,7 +51,235 @@ const papersData = [
         rating: 0,
         pages: 0,
         difficulty: "Medium",
-        pdfUrl: "papers/physics/physics-form-1-questions.pdf"
+        pdfUrl: "papers/physics/physics-form-1-questions.pdf",
+        url: "#"
+    },
+    {
+        id: 16,
+        title: "Kiswahili Form 2 Question Paper",
+        subject: "Kiswahili",
+        level: "Form 2",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 30,
+        difficulty: "Medium",
+        pdfUrl: "papers/kiswahili/Kiswahili - Kiswahili Form 2 - Zeraki Achievers 3.0 - Question Paper (3).pdf",
+        url: "#"
+    },
+    {
+        id: 17,
+        title: "Kiswahili Form 2 Question Paper (alt)",
+        subject: "Kiswahili",
+        level: "Form 2",
+        description: "Alternate Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 28,
+        difficulty: "Medium",
+        pdfUrl: "papers/kiswahili/Kiswahili - Kiswahili Form 2 - Zeraki Achievers 3.0 - Question Paper (4).pdf",
+        url: "#"
+    },
+    {
+        id: 18,
+        title: "Kiswahili Form 2 Marking Scheme",
+        subject: "Kiswahili",
+        level: "Form 2",
+        description: "Marking scheme for Zeraki Achievers paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 15,
+        difficulty: "Easy",
+        pdfUrl: "papers/kiswahili/Kiswahili - Kiswahili Form 2 - Zeraki Achievers 3.0 - Marking Scheme.pdf",
+        url: "#"
+    },
+    // automatically added real documents
+    {
+        id: 19,
+        title: "English Form 1 Question Paper",
+        subject: "English",
+        level: "Form 1",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 32,
+        difficulty: "Medium",
+        pdfUrl: "papers/english/English - English Form 1 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 20,
+        title: "English Form 1 Marking Scheme",
+        subject: "English",
+        level: "Form 1",
+        description: "Marking scheme for Form 1 paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 12,
+        difficulty: "Easy",
+        pdfUrl: "papers/english/English - English Form 1 - Zeraki Achievers 3.0 - Marking Scheme.pdf",
+        url: "#"
+    },
+    {
+        id: 21,
+        title: "History Form 2 Question Paper",
+        subject: "History",
+        level: "Form 2",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 28,
+        difficulty: "Medium",
+        pdfUrl: "papers/history/History - History Form 2 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 22,
+        title: "History Form 2 Marking Scheme",
+        subject: "History",
+        level: "Form 2",
+        description: "Answer scheme for Form 2 history",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 10,
+        difficulty: "Easy",
+        pdfUrl: "papers/history/History - History Form 2 - Zeraki Achievers 3.0 - Marking Scheme.pdf",
+        url: "#"
+    },
+    {
+        id: 23,
+        title: "Chemistry Form 1 Question Paper",
+        subject: "Chemistry",
+        level: "Form 1",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 30,
+        difficulty: "Medium",
+        pdfUrl: "papers/chemistry/Chemistry - Chemistry Form 1 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 24,
+        title: "Chemistry Form 1 Marking Scheme",
+        subject: "Chemistry",
+        level: "Form 1",
+        description: "Marking scheme document",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 8,
+        difficulty: "Easy",
+        pdfUrl: "papers/chemistry/Chemistry - Chemistry Form 1 - Zeraki Achievers 3.0 - Marking Scheme.pdf",
+        url: "#"
+    },
+    {
+        id: 25,
+        title: "Physics Form 1 Zeraki Question Paper",
+        subject: "Physics",
+        level: "Form 1",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 26,
+        difficulty: "Medium",
+        pdfUrl: "papers/physics/Physics - Physics Form 1 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 26,
+        title: "Physics Form 1 Questions PR",
+        subject: "Physics",
+        level: "Form 1",
+        description: "Practice questions (PR version)",
+        author: "Education Materials",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 25,
+        difficulty: "Medium",
+        pdfUrl: "papers/physics/physics-form-1-questions-pr_520d9ac7b7fa7a1d30494b7bd8d8beb1.pdf",
+        url: "#"
+    },
+    {
+        id: 27,
+        title: "Mathematics Form 2 Question Paper",
+        subject: "Mathematics",
+        level: "Form 2",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 34,
+        difficulty: "Medium",
+        pdfUrl: "papers/mathematics/Mathematics - Mathematics Form 2 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 28,
+        title: "Biology Form 1 Question Paper",
+        subject: "Biology",
+        level: "Form 1",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 22,
+        difficulty: "Medium",
+        pdfUrl: "papers/biology/Biology - Biology Form 1 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 29,
+        title: "Geography Form 1 Question Paper",
+        subject: "Geography",
+        level: "Form 1",
+        description: "Zeraki Achievers 3.0 question paper",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 28,
+        difficulty: "Medium",
+        pdfUrl: "papers/geography/Geography - Geography Form 1 - Zeraki Achievers 3.0 - Question Paper.pdf",
+        url: "#"
+    },
+    {
+        id: 30,
+        title: "Geography Form 1 Marking Scheme",
+        subject: "Geography",
+        level: "Form 1",
+        description: "Answer scheme document",
+        author: "Zeraki Achievers",
+        year: 2026,
+        downloads: 0,
+        rating: 0,
+        pages: 12,
+        difficulty: "Easy",
+        pdfUrl: "papers/geography/Geography - Geography Form 1 - Zeraki Achievers 3.0 - Marking Scheme.pdf",
+        url: "#"
+>>>>>>> 9041eb4 (1)
     }
 ];
 
@@ -67,6 +295,33 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function () {
     renderPapers(papersData);
+    renderFeatured();
+    renderTrending();
+    displaySearchHistory();
+
+    // wire up navigation search
+    const navInput = document.getElementById('navSearchInput');
+    const navClear = document.getElementById('navClearBtn');
+    if (navInput) {
+        navInput.addEventListener('keyup', function() {
+            document.getElementById('searchInput').value = navInput.value;
+            filterPapers();
+        });
+    }
+    if (navClear) {
+        navClear.addEventListener('click', function() {
+            document.getElementById('navSearchInput').value = '';
+            document.getElementById('searchInput').value = '';
+            filterPapers();
+            navInput && navInput.focus();
+        });
+    }
+
+    // contact form submit
+    const contactFormEl = document.getElementById('contactForm');
+    if (contactFormEl) {
+        contactFormEl.addEventListener('submit', handleContactSubmit);
+    }
 });
 
 /**
@@ -82,6 +337,7 @@ function renderPapers(papers) {
 
     papersGrid.innerHTML = papers.map(paper => `
         <div class="paper-card" onclick="previewPaper(${paper.id})">
+            <input type="checkbox" class="paper-checkbox" data-id="${paper.id}" onclick="togglePaperSelection(event, ${paper.id})" ${selectedPaperIds.has(paper.id) ? 'checked' : ''}>
             <div class="paper-header">
                 <div class="paper-tags">
                     <span class="paper-subject">${paper.subject}</span>
@@ -101,6 +357,7 @@ function renderPapers(papers) {
             </div>
         </div>
     `).join('');
+    updateSelectedCount();
 }
 
 /**
@@ -109,18 +366,23 @@ function renderPapers(papers) {
 let currentSubjectFilter = 'All';
 let currentLevelFilter = 'All';
 
-function filterPapers() {
+// return list of papers matching current search/filters
+function getFilteredPapers() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-
-    let filtered = papersData.filter(paper => {
-        const matchesSearch = paper.title.toLowerCase().includes(searchTerm) ||
+    return papersData.filter(paper => {
+        const matchesSearch =
+            paper.title.toLowerCase().includes(searchTerm) ||
             paper.description.toLowerCase().includes(searchTerm);
-        const matchesSubject = currentSubjectFilter === 'All' || paper.subject === currentSubjectFilter;
-        const matchesLevel = currentLevelFilter === 'All' || paper.level === currentLevelFilter;
-
+        const matchesSubject =
+            currentSubjectFilter === 'All' || paper.subject === currentSubjectFilter;
+        const matchesLevel =
+            currentLevelFilter === 'All' || paper.level === currentLevelFilter;
         return matchesSearch && matchesSubject && matchesLevel;
     });
+}
 
+function filterPapers() {
+    const filtered = getFilteredPapers();
     renderPapers(filtered);
 }
 
@@ -142,6 +404,31 @@ function filterByLevel(level) {
     document.getElementById('searchInput').scrollIntoView({ behavior: 'smooth' });
 }
 
+// sorting helpers
+function sortByDownloads() {
+    const sorted = getFilteredPapers().sort((a, b) => b.downloads - a.downloads);
+    renderPapers(sorted);
+    updateSelectedCount();
+}
+
+function sortByRating() {
+    const sorted = getFilteredPapers().sort((a, b) => b.rating - a.rating);
+    renderPapers(sorted);
+    updateSelectedCount();
+}
+
+function sortByNewest() {
+    const sorted = getFilteredPapers().sort((a, b) => b.year - a.year);
+    renderPapers(sorted);
+    updateSelectedCount();
+}
+
+function sortByTitle() {
+    const sorted = getFilteredPapers().slice().sort((a, b) => a.title.localeCompare(b.title));
+    renderPapers(sorted);
+    updateSelectedCount();
+}
+
 /**
  * Preview paper
  */
@@ -153,6 +440,7 @@ function previewPaper(paperId) {
 
     document.getElementById('previewTitle').textContent = paper.title;
     document.getElementById('previewAuthor').textContent = `By: ${paper.author}`;
+    document.getElementById('previewYear').textContent = paper.year ? `Year: ${paper.year}` : '';
     document.getElementById('previewPages').textContent = `${paper.pages} pages`;
     document.getElementById('previewDescription').textContent = paper.description;
 
@@ -269,66 +557,6 @@ function downloadPreviewedPaper() {
     }
 }
 
-/**
- * Toggle Section Visibility
- */
-function toggleSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    // Toggle content visibility
-    if (section.style.display === 'none' || section.classList.contains('d-none')) {
-        section.style.display = 'grid'; // Or 'block' based on layout, but grid is used for paper grids
-        section.classList.remove('d-none');
-    } else {
-        section.style.display = 'none';
-        section.classList.add('d-none');
-    }
-
-    // Rotate icon
-    // Find the button that toggles this section
-    const toggleBtn = document.querySelector(`button[onclick="toggleSection('${sectionId}')"]`);
-    if (toggleBtn) {
-        const icon = toggleBtn.querySelector('.toggle-icon');
-        if (icon) {
-            icon.classList.toggle('rotate-icon');
-        }
-    }
-}
-
-/**
- * Sort Papers
- */
-function sortPapers(criteria) {
-    let sortedPapers = [...papersData]; // Create a copy
-
-    switch (criteria) {
-        case 'downloads':
-            sortedPapers.sort((a, b) => b.downloads - a.downloads);
-            break;
-        case 'rating':
-            sortedPapers.sort((a, b) => b.rating - a.rating);
-            break;
-        case 'newest': // Assuming 'year' is the only date metric, could use added date if available
-            sortedPapers.sort((a, b) => b.year - a.year);
-            break;
-        case 'title':
-            sortedPapers.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-    }
-
-    // Re-render only if we are currently viewing filtered list or full list, 
-    // but simplified approach: re-render filtered list based on current filters + sort
-    // Better: Apply sort to current filtered view.
-    // Allow filterPapers to handle sorting if we upgrade it, but for now let's just sort the displayed data.
-    // To do this properly with existing filterPapers logic, we should probably add a global 'currentSort' variable
-    // and use it inside filterPapers.
-
-    currentSortCriteria = criteria; // Define this variable globally or at top scope
-    filterPapers();
-}
-
-let currentSortCriteria = 'newest'; // Default
 
 // Wrap original filterPapers to include sorting
 const originalFilterPapers = filterPapers;
@@ -457,32 +685,183 @@ function sharePaperLink() {
     const url = window.location.href; // In real app, this might be specific paper URL
     navigator.clipboard.writeText(url).then(() => {
         alert('Link copied to clipboard!');
+=======
+// ------------------
+// Utility functions
+// ------------------
+
+// Toggle visibility of expandable sections
+function toggleSection(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+}
+
+// Toggle filter panels
+function toggleFilter(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+}
+
+// ------------------
+// Search helpers
+// ------------------
+
+function showSearchSuggestions() {
+    const input = document.getElementById('searchInput');
+    const datalist = document.getElementById('searchSuggestions');
+    if (!input || !datalist) return;
+    const term = input.value.toLowerCase();
+    const suggestions = papersData
+        .filter(p => p.title.toLowerCase().includes(term))
+        .map(p => p.title);
+    // dedupe
+    const unique = [...new Set(suggestions)];
+    datalist.innerHTML = unique.map(s => `<option value="${s}">`).join('');
+}
+
+function addToSearchHistory(term) {
+    if (!term) return;
+    let history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+    history = history.filter(h => h !== term);
+    history.unshift(term);
+    if (history.length > 10) history = history.slice(0, 10);
+    localStorage.setItem('searchHistory', JSON.stringify(history));
+    displaySearchHistory();
+}
+
+function displaySearchHistory() {
+    const history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+    const container = document.getElementById('historyList');
+    if (!container) return;
+    container.innerHTML = history
+        .map(h => `<button class="history-item" onclick="searchFromHistory('${h}')">${h}</button>`)
+        .join('');
+    document.getElementById('searchHistory').style.display = history.length ? 'block' : 'none';
+}
+
+function searchFromHistory(term) {
+    document.getElementById('searchInput').value = term;
+    filterPapers();
+}
+
+// make sure filterPapers adds to history
+const _originalFilterPapers = filterPapers;
+filterPapers = function() {
+    const term = document.getElementById('searchInput').value.trim();
+    if (term) addToSearchHistory(term);
+    _originalFilterPapers();
+    updateSelectedCount();
+};
+
+// ------------------
+// Selection & batch operations
+// ------------------
+let selectedPaperIds = new Set();
+
+function togglePaperSelection(event, paperId) {
+    event.stopPropagation();
+    if (selectedPaperIds.has(paperId)) {
+        selectedPaperIds.delete(paperId);
+        event.target.checked = false;
+    } else {
+        selectedPaperIds.add(paperId);
+        event.target.checked = true;
+    }
+    updateSelectedCount();
+}
+
+function updateSelectedCount() {
+    document.getElementById('selectedCount').textContent = `${selectedPaperIds.size} papers selected`;
+    document.getElementById('batchDownloadBtn').style.display = selectedPaperIds.size > 0 ? 'inline-block' : 'none';
+}
+
+function toggleSelectAll() {
+    const allCheckboxes = document.querySelectorAll('.paper-checkbox');
+    const allIDS = Array.from(allCheckboxes).map(cb => parseInt(cb.dataset.id, 10));
+    const allSelected = allIDS.every(id => selectedPaperIds.has(id));
+    if (allSelected) {
+        selectedPaperIds.clear();
+        allCheckboxes.forEach(cb => cb.checked = false);
+    } else {
+        allIDS.forEach(id => selectedPaperIds.add(id));
+        allCheckboxes.forEach(cb => cb.checked = true);
+    }
+    updateSelectedCount();
+}
+
+function batchDownloadPapers() {
+    selectedPaperIds.forEach(id => {
+        const paper = papersData.find(p => p.id === id);
+        if (paper) downloadPaper(null, paper.pdfUrl, paper.title);
+    });
+}
+
+// ------------------
+// Sharing & viewing
+// ------------------
+
+function sharePaperLink() {
+    if (!currentPreviewedPaper) return;
+    const url = window.location.origin + window.location.pathname + `#paper-${currentPreviewedPaper.id}`;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard');
     });
 }
 
 function shareViaEmail() {
-    const subject = `Check out this paper: ${currentPreviewedPaper ? currentPreviewedPaper.title : 'Julisha Library'}`;
-    const body = `I found this great resource on Julisha Library: ${window.location.href}`;
-    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!currentPreviewedPaper) return;
+    const subject = encodeURIComponent(`Check out this paper: ${currentPreviewedPaper.title}`);
+    const body = encodeURIComponent(
+        `I found this paper on Julisha Library: ${window.location.origin + window.location.pathname}#paper-${currentPreviewedPaper.id}`
+    );
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
-/**
- * Handle Paper Submission
- */
-function handlePaperSubmission(event) {
-    event.preventDefault();
-    const statusDiv = document.getElementById('submissionStatus');
-    statusDiv.style.display = 'block';
-    statusDiv.textContent = 'Submitting paper...';
-    statusDiv.style.color = 'blue';
+function viewFullPDF() {
+    if (currentPreviewedPaper) {
+        window.open(currentPreviewedPaper.pdfUrl, '_blank');
+    }
+}
 
-    // Simulate API call
+// ------------------
+// Render helpers for featured/trending
+// ------------------
+
+function renderFeatured() {
+    const featuredGrid = document.getElementById('featuredContent');
+    if (!featuredGrid) return;
+    const featured = papersData.slice(0, 4);
+    featuredGrid.innerHTML = featured
+        .map(
+            p => `<div class="paper-card" onclick="previewPaper(${p.id})"><h4>${p.title}</h4></div>`
+        )
+        .join('');
+}
+
+function renderTrending() {
+    const trendingGrid = document.getElementById('trendingContent');
+    if (!trendingGrid) return;
+    const sorted = [...papersData].sort((a, b) => b.downloads - a.downloads).slice(0, 4);
+    trendingGrid.innerHTML = sorted
+        .map(
+            p => `<div class="paper-card" onclick="previewPaper(${p.id})"><h4>${p.title}</h4></div>`
+        )
+        .join('');
+}
+
+// ------------------
+// Difficulty voting
+// ------------------
+
+function voteDifficulty(level) {
+    const feedback = document.getElementById('difficultyFeedback');
+    if (!feedback) return;
+    feedback.style.display = 'block';
+    feedback.textContent = `Thanks for your feedback! You marked this paper as "${level}".`;
     setTimeout(() => {
-        statusDiv.textContent = 'Paper submitted successfully! Thank you for your contribution.';
-        statusDiv.style.color = 'green';
-        event.target.reset();
-        setTimeout(() => {
-            statusDiv.style.display = 'none';
-        }, 5000);
-    }, 1500);
+        feedback.style.display = 'none';
+    }, 3000);
 }
+
