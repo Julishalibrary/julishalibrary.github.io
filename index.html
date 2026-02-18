@@ -61,7 +61,7 @@
         </div>
     </section>
 
-    <!-- Search & Filter Section -->
+    <!-- Search Section -->
     <section class="search-section">
         <div class="container">
             <h2>Find Your Study Materials</h2>
@@ -70,115 +70,10 @@
                     type="text" 
                     id="searchInput" 
                     placeholder="Search papers by title or topic..." 
-                    onkeyup="filterPapers(); showSearchSuggestions()"
+                    oninput="filterPapers(); showSearchSuggestions()"
                     list="searchSuggestions"
                 >
                 <datalist id="searchSuggestions"></datalist>
-                <button onclick="filterPapers()" class="search-btn">🔍 Search</button>
-            </div>
-
-            <!-- Search History -->
-            <div class="search-history" id="searchHistory" style="display: none;">
-                <p><strong>Recent searches:</strong></p>
-                <div id="historyList"></div>
-            </div>
-
-            <!-- Batch Download Section -->
-            <div class="batch-download-section">
-                <button class="select-all-btn" onclick="toggleSelectAll()">☑️ Select All</button>
-                <span id="selectedCount">0 papers selected</span>
-                <button class="batch-download-btn" id="batchDownloadBtn" onclick="batchDownloadPapers()" style="display: none;">📦 Download Selected</button>
-            </div>
-            
-            <div class="sort-options">
-                <span>Sort by:</span>
-                <button class="sort-btn" onclick="sortByDownloads()">📥 Most Downloaded</button>
-                <button class="sort-btn" onclick="sortByRating()">⭐ Highest Rated</button>
-                <button class="sort-btn" onclick="sortByNewest()">📅 Newest First</button>
-                <button class="sort-btn" onclick="sortByTitle()">A-Z Title</button>
-            </div>
-
-            <!-- Collapsible Filters -->
-            <div class="collapsible-filters">
-                <!-- Grade/Form Filter -->
-                <div class="filter-group">
-                    <button class="filter-toggle" onclick="toggleFilter('level-filter')">
-                        <span>📚 Filter by Grade/Form</span>
-                        <span class="toggle-icon">▼</span>
-                    </button>
-                    <div class="filter-content" id="level-filter">
-                        <div class="level-filters">
-                            <button class="level-tag" onclick="filterByLevel('All')">All</button>
-                            <button class="level-tag" onclick="filterByLevel('Grade 9')">Grade 9</button>
-                            <button class="level-tag" onclick="filterByLevel('Grade 10')">Grade 10</button>
-                            <button class="level-tag" onclick="filterByLevel('Grade 11')">Grade 11</button>
-                            <button class="level-tag" onclick="filterByLevel('Grade 12')">Grade 12</button>
-                            <button class="level-tag" onclick="filterByLevel('Form 1')">Form 1</button>
-                            <button class="level-tag" onclick="filterByLevel('Form 2')">Form 2</button>
-                            <button class="level-tag" onclick="filterByLevel('Form 3')">Form 3</button>
-                            <button class="level-tag" onclick="filterByLevel('Form 4')">Form 4</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Subject Filter -->
-                <div class="filter-group">
-                    <button class="filter-toggle" onclick="toggleFilter('subject-filter')">
-                        <span>🔬 Filter by Subject</span>
-                        <span class="toggle-icon">▼</span>
-                    </button>
-                    <div class="filter-content" id="subject-filter">
-                        <div class="filter-tags">
-                            <button class="tag" onclick="filterBySubject('All')">All</button>
-                            <button class="tag" onclick="filterBySubject('Mathematics')">Mathematics</button>
-                            <button class="tag" onclick="filterBySubject('Physics')">Physics</button>
-                            <button class="tag" onclick="filterBySubject('Chemistry')">Chemistry</button>
-                            <button class="tag" onclick="filterBySubject('Biology')">Biology</button>
-                            <button class="tag" onclick="filterBySubject('English')">English</button>
-                            <button class="tag" onclick="filterBySubject('History')">History</button>
-                            <button class="tag" onclick="filterBySubject('Geography')">Geography</button>
-                            <button class="tag" onclick="filterBySubject('Kiswahili')">Kiswahili</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Advanced Filters -->
-                <div class="filter-group">
-                    <button class="filter-toggle" onclick="toggleFilter('advanced-filter')">
-                        <span>⚙️ Advanced Filters</span>
-                        <span class="toggle-icon">▼</span>
-                    </button>
-                    <div class="filter-content" id="advanced-filter">
-                        <div class="advanced-filters">
-                            <div class="filter-input-group">
-                                <label>Rating (minimum):</label>
-                                <select id="ratingFilter" onchange="applyAdvancedFilters()">
-                                    <option value="">All Ratings</option>
-                                    <option value="4.5">4.5+ ⭐</option>
-                                    <option value="4.7">4.7+ ⭐⭐</option>
-                                    <option value="4.9">4.9+ ⭐⭐⭐</option>
-                                </select>
-                            </div>
-                            <div class="filter-input-group">
-                                <label>Year:</label>
-                                <select id="yearFilter" onchange="applyAdvancedFilters()">
-                                    <option value="">Any Year</option>
-                                    <option value="2026">2026</option>
-                                    <option value="2025">2025</option>
-                                </select>
-                            </div>
-                            <div class="filter-input-group">
-                                <label>Difficulty:</label>
-                                <select id="difficultyFilter" onchange="applyAdvancedFilters()">
-                                    <option value="">Any Difficulty</option>
-                                    <option value="Easy">Easy</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Hard">Hard</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
