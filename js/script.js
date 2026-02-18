@@ -302,23 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
     renderTrending();
     displaySearchHistory();
 
-    // wire up navigation search
-    const navInput = document.getElementById('navSearchInput');
-    const navClear = document.getElementById('navClearBtn');
-    if (navInput) {
-        navInput.addEventListener('keyup', function() {
-            document.getElementById('searchInput').value = navInput.value;
-            filterPapers();
-        });
-    }
-    if (navClear) {
-        navClear.addEventListener('click', function() {
-            document.getElementById('navSearchInput').value = '';
-            document.getElementById('searchInput').value = '';
-            filterPapers();
-            navInput && navInput.focus();
-        });
-    }
 
     // contact form submit
     const contactFormEl = document.getElementById('contactForm');
@@ -866,4 +849,24 @@ function voteDifficulty(level) {
     setTimeout(() => {
         feedback.style.display = 'none';
     }, 3000);
+}
+
+function handleContactSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.contactName.value.trim();
+    const email = form.contactEmail.value.trim();
+    const subject = form.contactSubject.value.trim() || 'Contact from Julisha Library';
+    const message = form.contactMessage.value.trim();
+
+    // Construct mailto link
+    const mailtoSubject = encodeURIComponent(subject);
+    const mailtoBody = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\n${message}`
+    );
+    // replace with actual support address if available
+    window.location.href = `mailto:support@julishalibrary.org?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+    // reset form after navigation triggered
+    form.reset();
 }
