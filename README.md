@@ -14,28 +14,7 @@ A free, open-source platform for hosting and accessing revision papers and study
 
 ## 🚀 Quick Start
 
-### Backend (optional)
-
-If you want the contact form to actually submit messages, you can run a tiny Node.js backend included in this repo.
-
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Start the server:
-
-```bash
-npm start
-```
-
-By default the server listens on port 3000 and serves the static site plus a `POST /contact` endpoint that logs submissions to `contacts.txt`.
-
-
-## 🚀 Quick Start
-
-### Option 1: Deploy to GitHub Pages (Recommended)
+### Deploy to GitHub Pages (Recommended)
 
 1. **Fork or Clone the Repository**
    ```bash
@@ -175,21 +154,6 @@ Add this to the `<head>` section of `index.html`:
 ```
 
 ## 📋 Available Subjects
-
-### External Form Example
-
-You can bypass the built‑in backend and post directly to a service like [FormSubmit](https://formsubmit.co).
-
-```html
-<form action="https://formsubmit.co/julisha-library@gmail.com" method="POST">
-     <input type="text" name="name" required>
-     <input type="email" name="email" required>
-     <button type="submit">Send</button>
-</form>
-```
-
-Just swap the `action` URL for your own email or service endpoint.
-
 
 - 📐 Mathematics (Algebra, Geometry, Calculus)
 - ⚛️ Physics (Mechanics, Thermodynamics, Waves)

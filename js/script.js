@@ -303,11 +303,8 @@ document.addEventListener('DOMContentLoaded', function() {
     displaySearchHistory();
 
 
-    // contact form submit
-    const contactFormEl = document.getElementById('contactForm');
-    if (contactFormEl) {
-        contactFormEl.addEventListener('submit', handleContactSubmit);
-    }
+    // contact form auto-submits to FormSubmit
+    // no custom handler needed—browser handles POST natively
 });
 
 /**
@@ -794,35 +791,4 @@ function voteDifficulty(level) {
     }, 3000);
 }
 
-function handleContactSubmit(event) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
 
-    // Replace the action URL with your real endpoint (Formspree, Netlify, etc.)
-    fetch(form.action, {
-        method: form.method || 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Thank you! Your message has been sent.');
-            form.reset();
-        } else {
-            response.json().then(data => {
-                if (data.errors) {
-                    alert(data.errors.map(e => e.message).join(', '));
-                } else {
-                    alert('Oops! There was a problem submitting your form.');
-                }
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error submitting contact form:', error);
-        alert('Oops! There was a problem submitting your form.');
-    });
-}
