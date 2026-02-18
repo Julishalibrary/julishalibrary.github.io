@@ -38,6 +38,20 @@ body {
     padding: 0 20px;
 }
 
+/* Utilities */
+.d-none {
+    display: none !important;
+}
+
+.rotate-icon {
+    transform: rotate(180deg);
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
 /* Navigation */
 .navbar {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
