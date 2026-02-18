@@ -296,8 +296,6 @@ window.papersData = papersData;
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     renderPapers(papersData);
-    renderFeatured();
-    renderTrending();
 });
 
 /**
@@ -473,30 +471,6 @@ function downloadPreviewedPaper() {
     if (currentPreviewedPaper) {
         downloadPaper(null, currentPreviewedPaper.pdfUrl, currentPreviewedPaper.title);
     }
-}
-
-/**
- * Render featured papers
- */
-function renderFeatured() {
-    const featuredGrid = document.getElementById('featuredContent');
-    if (!featuredGrid) return;
-    const featured = papersData.slice(0, 4);
-    featuredGrid.innerHTML = featured
-        .map(p => `<div class="paper-card" onclick="previewPaper(${p.id})"><h4>${p.title}</h4></div>`)
-        .join('');
-}
-
-/**
- * Render trending papers
- */
-function renderTrending() {
-    const trendingGrid = document.getElementById('trendingContent');
-    if (!trendingGrid) return;
-    const sorted = [...papersData].sort((a, b) => b.downloads - a.downloads).slice(0, 4);
-    trendingGrid.innerHTML = sorted
-        .map(p => `<div class="paper-card" onclick="previewPaper(${p.id})"><h4>${p.title}</h4></div>`)
-        .join('');
 }
 
 /**
