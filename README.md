@@ -200,7 +200,7 @@ For issues, feature requests, or questions:
 
 ## 🌐 Live Demo
 
-Visit the live version at: [https://github.com/Julishalibrary/julishalibrary.github.io/]
+Visit the live version at: [https://julishalibrary.github.io/]
 
 ---
 
