@@ -59,10 +59,10 @@ For issues, feature requests, or questions:
 - Open an issue on GitHub
 - Check existing issues first to avoid duplicates
 
-## 🌐 Live Demo
+# 🌐 Live Demo
 
-# Visit the live version at: [https://julishalibrary.github.io/]
+Visit the live version at: [https://julishalibrary.github.io/]
 
 ---
 
-#**Made with ❤️ to make education accessible to everyone**
+Made with ❤️ to make education accessible to everyone**
