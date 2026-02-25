@@ -26,22 +26,6 @@ Julisha-Library/
 ├── README.md           # This file
 └── LICENSE             # MIT License
 ```
-
-## 📚 How to Add Papers
-
-Edit the `code/script.js` file and add papers to the `papersData` array:
-
-```javascript
-{
-    id: 13,
-    title: "Your Paper Title",
-    subject: "Subject Name",
-    description: "Brief description of the paper",
-    author: "Author Name",
-    year: 2026,
-    url: "#"  // Link to PDF file when added
- (Cells, Genetics, Evolution)
-- 📖 English (Liter
 ## 🤝 Contributing
 
 Contributions are welcome! To contribute:
