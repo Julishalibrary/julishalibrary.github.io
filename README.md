@@ -13,12 +13,11 @@ A free, open-source platform for hosting and accessing revision papers and study
 - **Community-Driven**: Easy to contribute new papers and materials
 ```
 
-Then visit `http://localhost:8000/code/`
 
 ## 📁 Project Structure
 
 ```
-Julisha-Library/
+#Julisha-Library/
 ├── code/
 │   ├── index.html      # Main HTML file
 │   ├── style.css       # Complete styling
@@ -62,8 +61,8 @@ For issues, feature requests, or questions:
 
 ## 🌐 Live Demo
 
-Visit the live version at: [https://julishalibrary.github.io/]
+# Visit the live version at: [https://julishalibrary.github.io/]
 
 ---
 
-**Made with ❤️ to make education accessible to everyone**
+#**Made with ❤️ to make education accessible to everyone**
