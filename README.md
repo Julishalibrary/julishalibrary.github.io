@@ -58,6 +58,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For issues, feature requests, or questions:
 - Open an issue on GitHub
 - Check existing issues first to avoid duplicates
+- Email us at julishalibrary.github.io
 
 # 🌐 Live Demo
 
