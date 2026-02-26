@@ -11,19 +11,20 @@ A free, open-source platform for hosting and accessing revision papers and study
 - **No Dependencies**: Pure HTML, CSS, and JavaScript - no frameworks required
 - **Easy to Deploy**: Hosted on GitHub Pages at no cost
 - **Community-Driven**: Easy to contribute new papers and materials
+  
+
+
+📁 Project Structure
+
 ```
-
-
-## 📁 Project Structure
-
-```
-#Julisha-Library/
+Julisha-Library/
 ├── code/
 │   ├── index.html      # Main HTML file
 │   ├── style.css       # Complete styling
 │   └── script.js       # Interactivity and data
 ├── README.md           # This file
 └── LICENSE             # MIT License
+```
 ## 🤝 Contributing
 
 Contributions are welcome! To contribute:
