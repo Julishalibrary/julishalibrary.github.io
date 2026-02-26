@@ -24,7 +24,6 @@ A free, open-source platform for hosting and accessing revision papers and study
 │   └── script.js       # Interactivity and data
 ├── README.md           # This file
 └── LICENSE             # MIT License
-```
 ## 🤝 Contributing
 
 Contributions are welcome! To contribute:
@@ -55,13 +54,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For issues, feature requests, or questions:
-- Open an issue on GitHub
-- Check existing issues first to avoid duplicates
-- Email us at julishalibrary@gmail.com
+##For issues, feature requests, or questions:
+##- Open an issue on GitHub
+##- Check existing issues first to avoid duplicates
+##- Email us at julishalibrary@gmail.com
 
-🌐 Live Demo
+##🌐 Live Demo
 Visit the live version at: [https://julishalibrary.github.io/]
 
 
-Made with ❤️ to make education accessible to everyone**
+##Made with ❤️ to make education accessible to everyone**
