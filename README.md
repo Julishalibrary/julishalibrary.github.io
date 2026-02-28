@@ -1,8 +1,8 @@
-# Julisha Library 📚
+Julisha Library 📚
 
 A free, open-source platform for hosting and accessing revision papers and study materials. Built with HTML, CSS, and JavaScript, and hosted on GitHub Pages.
 
-## 🌟 Features
+🌟 Features
 
 - **Completely Free**: All materials are free to access and download
 - **Multiple Subjects**: Browse papers across Mathematics, Physics, Chemistry, Biology, English, History, and more
@@ -25,7 +25,7 @@ Julisha-Library/
 ├── README.md           # This file
 └── LICENSE             # MIT License
 ```
-## 🤝 Contributing
+🤝 Contributing
 
 Contributions are welcome! To contribute:
 
@@ -34,7 +34,7 @@ Contributions are welcome! To contribute:
 3. Make improvements or add new papers
 4. Submit a pull request with a clear description
 
-## 💡 Suggestions for Expansion
+💡 Suggestions for Expansion
 
 - Implement user accounts and collections
 - Add PDF upload functionality
@@ -44,24 +44,21 @@ Contributions are welcome! To contribute:
 - Add support for multiple languages
 - Create mobile app version
 
-## 📄 License
+ 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+ 🙏 Acknowledgments
 
 - Built with ❤️ for students worldwide
 - Inspired by platforms like StudyUCO
 
-## 📞 Support
+ 📞 Support
 
-##For issues, feature requests, or questions:
-##- Open an issue on GitHub
-##- Check existing issues first to avoid duplicates
-##- Email us at julishalibrary@gmail.com
+For issues, feature requests, or questions:
+- Open an issue on GitHub
+- Check existing issues first to avoid duplicates
+- Email us at julishalibrary@gmail.com
 
-##🌐 Live Demo
+🌐 Live Demo
 Visit the live version at: [https://julishalibrary.github.io/]
-
-
-##Made with ❤️ to make education accessible to everyone**
