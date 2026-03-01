@@ -33,8 +33,11 @@ const papersData = [
         level: "Form 4",
         description: "Complete revision questions for Form 4 Additional Mathematics",
         author: "Mathematics Department",
-        year: 2026,
-        
+        year: 2026,    
+        rating: 0,
+        pages: 0,
+        difficulty: "Hard",ar: 2026,
+        downloads: 0,
         pdfUrl: "papers/mathematics/form-4-additional-mathematics.pdf"
     },
     {
