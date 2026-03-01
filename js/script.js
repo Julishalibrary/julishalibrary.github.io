@@ -18,11 +18,11 @@ const papersData = [
         level: "Form 4",
         description: "Complete KLB Biology Form 4 study guide",
         author: "KLB Publishers",
-        downloads: 0,
+        year:2026,      
         rating: 0,
         pages: 0,
-        difficulty: "Hard",
-        year: 2026,
+        difficulty: "Hard",ar: 2026,
+        downloads: 0,
 
         pdfUrl: "papers/biology/klb-biology-form-4.pdf"
     },
@@ -34,10 +34,7 @@ const papersData = [
         description: "Complete revision questions for Form 4 Additional Mathematics",
         author: "Mathematics Department",
         year: 2026,
-        downloads: 0,
-        rating: 0,
-        pages: 0,
-        difficulty: "Hard",
+        
         pdfUrl: "papers/mathematics/form-4-additional-mathematics.pdf"
     },
     {
@@ -281,130 +278,219 @@ const papersData = [
         url: "#"
     }
 ];
+
 let currentPreviewedPaper = null;
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
 
-// --- 3. CORE FUNCTIONS ---
+// Add PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-// Initial load
-document.addEventListener('DOMContentLoaded', () => {
+// expose data for debugging
+window.papersData = papersData;
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
     renderPapers(papersData);
 });
 
-// Fix: The Subject Filter Functionality
-function filterBySubject(subject) {
-    // 1. Update the search bar text so the user knows what is being filtered
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) searchInput.value = subject;
-
-    // 2. Scroll smoothly to the papers section
-    document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
-
-    // 3. Filter the data array
-    const filtered = papersData.filter(paper => paper.subject.toLowerCase() === subject.toLowerCase());
-    
-    // 4. Render the newly filtered list
-    renderPapers(filtered);
-}
-
-// Search Bar Filter
-function filterPapers() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    
-    const filtered = papersData.filter(paper => 
-        paper.title.toLowerCase().includes(searchTerm) || 
-        paper.subject.toLowerCase().includes(searchTerm) ||
-        paper.description.toLowerCase().includes(searchTerm)
-    );
-    
-    renderPapers(filtered);
-}
-
-// Fix: Error-free Render Function
-function renderPapers(papersToRender) {
+/**
+ * Render all papers
+ */
+function renderPapers(papers) {
     const papersGrid = document.getElementById('papersGrid');
-    if (!papersGrid) return;
 
-    papersGrid.innerHTML = ''; // Clear current grid
-
-    if (papersToRender.length === 0) {
-        papersGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; font-weight:bold;">No papers found for this search.</p>';
+    if (papers.length === 0) {
+        papersGrid.innerHTML = '<div class="empty-state"><p>No papers found.</p></div>';
         return;
     }
 
-    papersToRender.forEach(paper => {
-        // Safe fallbacks prevent "undefined" errors on the frontend
-        const rating = paper.rating || 0;
-        const downloads = paper.downloads || 0;
-        const description = paper.description || "No description available.";
-        
-        const card = document.createElement('div');
-        card.className = 'paper-card';
-        card.onclick = () => previewPaper(paper.id);
-
-        card.innerHTML = `
-            <span class="paper-subject">${paper.subject}</span>
-            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">${paper.title}</h3>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">${description}</p>
-            <div class="paper-stats">
-                <span style="color: var(--text-color);">⭐ ${rating}</span>
-                <span style="color: var(--text-color);">📥 ${downloads}</span>
+    papersGrid.innerHTML = papers.map(paper => `
+        <div class="paper-card" onclick="previewPaper(${paper.id})">
+            <div class="paper-header">
+                <div class="paper-tags">
+                    <span class="paper-subject">${paper.subject}</span>
+                    <span class="paper-level">${paper.level}</span>
+                </div>
+                <h3>${paper.title}</h3>
             </div>
-            <button class="download-btn" onclick="downloadPaper(event, '${paper.pdfUrl}', '${paper.title}')">
-                📥 Download
-            </button>
-        `;
-        papersGrid.appendChild(card);
-    });
+            <div class="paper-body">
+                <p class="paper-description">${paper.description}</p>
+                <div class="paper-meta">
+                    <span class="rating">⭐ ${paper.rating}</span>
+                    <span class="downloads">📥 ${paper.downloads}</span>
+                </div>
+                <button class="download-btn" onclick="downloadPaper(event, '${paper.pdfUrl}', '${paper.title}')">
+                    📥 Download
+                </button>
+            </div>
+        </div>
+    `).join('');
 }
 
-// Modal Logic
-function previewPaper(id) {
-    const paper = papersData.find(p => p.id === id);
+/**
+ * Filter papers by search term (live)
+ */
+function filterPapers() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = papersData.filter(paper => 
+        paper.title.toLowerCase().includes(searchTerm) ||
+        paper.description.toLowerCase().includes(searchTerm) ||
+        paper.subject.toLowerCase().includes(searchTerm)
+    );
+    renderPapers(filtered);
+}
+
+/**
+ * Preview paper
+ */
+function previewPaper(paperId) {
+    const paper = papersData.find(p => p.id === paperId);
     if (!paper) return;
 
     currentPreviewedPaper = paper;
-    
+
     document.getElementById('previewTitle').textContent = paper.title;
-    document.getElementById('previewDescription').textContent = paper.description || "No description provided.";
+    document.getElementById('previewAuthor').textContent = `By: ${paper.author}`;
+    document.getElementById('previewYear').textContent = paper.year ? `Year: ${paper.year}` : '';
+    document.getElementById('previewPages').textContent = `${paper.pages} pages`;
+    document.getElementById('previewDescription').textContent = paper.description;
+
     document.getElementById('previewModal').style.display = 'flex';
+
+    // Load PDF preview
+    loadPDF(paper.pdfUrl);
 }
 
+/**
+ * Close preview
+ */
 function closePreview() {
     document.getElementById('previewModal').style.display = 'none';
-    currentPreviewedPaper = null;
+    pdfDoc = null;
+    pageNum = 1;
 }
 
-// Download Logic
+/**
+ * Load PDF
+ */
+function loadPDF(url) {
+    const pdfViewerSection = document.getElementById('pdfViewerSection');
+
+    pdfjsLib.getDocument(url).promise.then(function (pdf) {
+        pdfDoc = pdf;
+        document.getElementById('totalPages').textContent = pdf.numPages;
+        pdfViewerSection.style.display = 'block';
+        renderPage(pageNum);
+    }).catch(function (error) {
+        console.error('Error loading PDF:', error);
+        pdfViewerSection.innerHTML = '<p>Unable to load PDF preview. Download to view.</p>';
+    });
+}
+
+/**
+ * Render PDF page
+ */
+function renderPage(num) {
+    if (!pdfDoc) return;
+
+    pageRendering = true;
+    pdfDoc.getPage(num).then(function (page) {
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const viewport = page.getViewport({ scale: 1.5 });
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+
+        page.render(renderContext).promise.then(function () {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+
+    document.getElementById('currentPage').textContent = num;
+}
+
+/**
+ * Next page
+ */
+function nextPage() {
+    if (pageNum >= pdfDoc.numPages) return;
+    pageNumPending = pageNum + 1;
+    if (!pageRendering) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+    }
+    pageNum++;
+}
+
+/**
+ * Previous page
+ */
+function previousPage() {
+    if (pageNum <= 1) return;
+    pageNumPending = pageNum - 1;
+    if (!pageRendering) {
+        renderPage(pageNumPending);
+        pageNumPending = null;
+    }
+    pageNum--;
+}
+
+/**
+ * Download paper
+ */
 function downloadPaper(event, pdfUrl, title) {
-    if (event) event.stopPropagation();
-    
+    if (event) {
+        event.stopPropagation();
+    }
+
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.download = title.replace(/\s+/g, '-').toLowerCase() + '.pdf';
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
 }
 
+/**
+ * Download from preview
+ */
 function downloadPreviewedPaper() {
     if (currentPreviewedPaper) {
         downloadPaper(null, currentPreviewedPaper.pdfUrl, currentPreviewedPaper.title);
     }
 }
 
-// New Sharing Feature Logic (Safe Placeholder)
-function shareViaEmail() {
-    if (currentPreviewedPaper) {
-        const subject = encodeURIComponent(`Check out this revision paper: ${currentPreviewedPaper.title}`);
-        const body = encodeURIComponent(`I found this great resource on Julisha Library:\n\nTitle: ${currentPreviewedPaper.title}\nLink: https://julishalibrary.github.io/`);
-        window.location.href = `mailto:?subject=${subject}&body=${body}`;
-    }
+/**
+ * Show search suggestions
+ */
+function showSearchSuggestions() {
+    const input = document.getElementById('searchInput');
+    const datalist = document.getElementById('searchSuggestions');
+    if (!input || !datalist) return;
+    const term = input.value.toLowerCase();
+    const suggestions = papersData
+        .filter(p => p.title.toLowerCase().includes(term))
+        .map(p => p.title);
+    const unique = [...new Set(suggestions)];
+    datalist.innerHTML = unique.map(s => `<option value="${s}">`).join('');
 }
 
-// Close Modal when clicking outside the content box
-window.onclick = function(event) {
-    const modal = document.getElementById('previewModal');
-    if (event.target === modal) {
-        closePreview();
-    }
+/**
+ * Toggle section visibility
+ */
+function toggleSection(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
 }
