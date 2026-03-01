@@ -137,6 +137,22 @@
                 <div class="card subject-card" onclick="filterBySubject('History')">🏛️ History</div>
                 <div class="card subject-card" onclick="filterBySubject('Geography')">🌍 Geography</div>
             </d<section id="contribute" class="container" style="margin-top: 2rem; margin-bottom: 2rem;">
+
+
+        
+        </section>
+                <h2 class="section-title">Browse by Subject</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search by title, subject, or keyword..." oninput="filterPapers()">
+                    <datalist id="searchSuggestions"></datalist>
+                </div>
+        <section id="papers" class="container">
+            <h2 class="section-title">Available Papers</h2>
+            <div class="papers-grid" id="papersGrid">
+                </div>
+        </section>
+
+        <section id="contribute" class="container" style="margin-top: 2rem; margin-bottom: 2rem;">
     <div id="julisha-upload-card" style="
         background: var(--white); 
         border: 2px dashed var(--primary-color); 
@@ -191,22 +207,7 @@
         document.getElementById('julisha-upload-card').style.borderColor = 'var(--primary-color)';
     }
 </script>
-                    iv>
-
-        
-        </section>
-                <h2 class="section-title">Browse by Subject</h2>
-                <div class="search-container">
-                    <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search by title, subject, or keyword..." oninput="filterPapers()">
-                    <datalist id="searchSuggestions"></datalist>
-                </div>
-        <section id="papers" class="container">
-            <h2 class="section-title">Available Papers</h2>
-            <div class="papers-grid" id="papersGrid">
-                </div>
-        </section>
-
-        
+                    
         
         <section id="contact" class="container" style="max-width: 700px;">
             <h2 class="section-title">Contact Us</h2>
