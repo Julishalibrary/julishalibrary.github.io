@@ -1,654 +1,16 @@
-<!doctype html>
-<html ⚡ lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julisha Library - Free Revision Papers</title>
-    
-    <link rel="canonical" href="https://julishalibrary.github.io/">
     <link rel="icon" type="image/png" href="icon.png?v=5" sizes="16x16">
-    <meta name="google-site-verification" content="1NpEXqGjHJ076kgl2akQKAkDWA7ak1TI6JNLNQuBsaw" />
-    <meta name="description" content="Julisha Library offers 100% free revision papers and study materials for Mathematics, Physics, Chemistry, Biology, and more.">
-
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-
-    <style amp-custom>
-        /* PASTE YOUR ENTIRE css/style.css CONTENT BELOW THIS LINE */
-        /* Root Variables */
-:root {
-    --primary: #004a99;
-    --bg: #ffffff;
-    --accent-color: #f59e0b;
-    --text-color: #1f2937;
-    --bg-color: #f3f4f6;
-    --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
-}
-
-/* Dark Mode */
-body.dark-mode {
-    --text-color: #e5e7eb;
-    --bg-color: #111827;
-    --white: #1f2937;
-}
-
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    transition: var(--transition);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Utilities */
-.d-none {
-    display: none !important;
-}
-
-.rotate-icon {
-    transform: rotate(180deg);
-}
-
-.toggle-icon {
-    transition: transform 0.3s ease;
-    display: inline-block;
-}
-
-/* Navigation */
-.navbar {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 1.5rem 0;
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.2rem;
-}
-
-.tagline {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-.nav-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.nav-links a:hover {
-    opacity: 0.8;
-}
-
-.dark-mode-btn {
-    background: none;
-    border: 2px solid var(--white);
-    color: var(--white);
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: var(--transition);
-}
-
-.dark-mode-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 6rem 2rem;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-/* Buttons */
-.btn-primary {
-    background-color: var(--accent-color);
-    color: var(--white);
-    border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-}
-
-.btn-primary:hover {
-    background-color: #d97706;
-    transform: translateY(-2px);
-}
-
-/* Search Section */
-.search-section {
-    background: var(--white);
-    padding: 3rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.search-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-
-.search-bar {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.search-bar input {
-    flex: 1;
-    padding: 1rem;
-    border: 2px solid var(--primary-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-}
-
-.search-bar input:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.search-btn {
-    padding: 1rem 2rem;
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.search-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-/* Filters */
-.filters {
-    margin: 2rem 0;
-}
-
-.filter-group {
-    margin-bottom: 2rem;
-}
-
-.filter-group h3 {
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
-
-.filter-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-}
-
-/* collapsible filter toggles */
-.collapsible-filters .filter-toggle,
-.section-toggle {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    padding: 0.8rem 1.2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    transition: var(--transition);
-    margin-bottom: 0.5rem;
-}
-
-.collapsible-filters .filter-toggle:hover,
-.section-toggle:hover {
-    background-color: var(--secondary-color);
-}
-
-.toggle-icon {
-    margin-left: auto;
-    transition: transform 0.3s ease;
-}
-
-.filter-content {
-    display: none;
-    margin-top: 1rem;
-}
-
-.level-filters,
-.filter-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-
-.filter-btn {
-    padding: 0.6rem 1.2rem;
-    background-color: var(--bg-color);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background-color: var(--primary-color);
-    color: var(--white);
-}
-
-/* Papers Section */
-.papers-section {
-    padding: 4rem 0;
-    background-color: var(--white);
-}
-
-.papers-section h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-
-.papers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.paper-card {
-    position: relative;
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.paper-checkbox {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    transform: scale(1.2);
-    z-index: 10;
-}
-
-.paper-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.paper-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 1.5rem;
-}
-
-.paper-tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.8rem;
-    flex-wrap: wrap;
-}
-
-.paper-subject {
-    display: inline-block;
-    background-color: var(--accent-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.paper-level {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-}
-
-.paper-header h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-
-.paper-body {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.paper-description {
-    color: #6b7280;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    flex-grow: 1;
-}
-
-.paper-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: #9ca3af;
-    margin-bottom: 1.5rem;
-}
-
-.download-btn {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 0.8rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.download-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-/* Subjects Section */
-.subjects-section {
-    padding: 4rem 0;
-    background-color: var(--white);
-}
-
-.subjects-section h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-
-.subjects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
-
-.subject-card {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-}
-
-.subject-card:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow);
-}
-
-.subject-card h3 {
-    font-size: 1.3rem;
-}
-
-/* Modal */
-.modal {
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-color);
-}
-
-.close-modal:hover {
-    color: var(--primary-color);
-}
-
-.preview-header {
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-}
-
-.preview-header h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.preview-meta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    font-size: 0.9rem;
-    color: #6b7280;
-}
-
-.preview-body {
-    margin-bottom: 1rem;
-}
-
-/* PDF Viewer */
-.pdf-viewer-section {
-    margin: 1.5rem 0;
-    padding: 1rem;
-    background-color: var(--bg-color);
-    border-radius: 8px;
-}
-
-.pdf-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.pdf-btn {
-    padding: 0.6rem 1rem;
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.pdf-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-#pageInfo {
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.pdf-canvas-wrapper {
-    max-height: 400px;
-    overflow-y: auto;
-    text-align: center;
-    background-color: var(--white);
-    padding: 1rem;
-    border-radius: 6px;
-}
-
-#pdfCanvas {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-}
-
-.footer a {
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .logo h1 {
-        font-size: 1.3rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .search-bar {
-        flex-direction: column;
-    }
-
-    .subjects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .papers-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 1.5rem;
-    }
-
-    .papers-grid {
-        gap: 1rem;
-    }
-
-    .filter-buttons {
-        gap: 0.5rem;
-    }
-
-    .filter-btn {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.85rem;
-    }
-}
-        /* Temporary basic styles to ensure UI doesn't break if you forget to paste */
-        body { font-family: sans-serif; line-height: 1.6; color: #333; transition: 0.3s; }
-        .container { width: 90%; max-width: 1200px; margin: auto; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 1000; }
-        .nav-links a { margin-left: 15px; text-decoration: none; color: inherit; font-weight: bold; }
-        .hero { text-align: center; padding: 80px 20px; background: #f4f7f6; }
-        .btn-primary { background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; }
-        .search-bar input { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 30px; margin: 20px 0; }
-        .papers-grid, .subjects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px 0; }
-        .subject-card { border: 1px solid #eee; padding: 20px; border-radius: 10px; cursor: pointer; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 2000; }
-        .modal-content { background: #fff; padding: 30px; border-radius: 10px; width: 90%; max-width: 700px; position: relative; }
-        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; }
-        .dark-mode { background-color: #1a1a1a !important; color: #f4f4f4 !important; }
-        .dark-mode .navbar, .dark-mode .modal-content, .dark-mode .subject-card { background-color: #2d2d2d; border-color: #444; }
-
-        /* PASTE ENDS HERE */
-    </style>
+    <meta name="google-site-verification" content="1NpEXqGjHJ076kgl2akQKAkDWA7ak1TI6JNLNQuBsaw" />
 </head>
 <body>
+    <!-- Navigation Header -->
     <header class="navbar">
         <div class="container">
             <div class="logo">
@@ -666,6 +28,7 @@ body {
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Karibu 👋 </h1>
@@ -674,6 +37,7 @@ body {
         </div>
     </section>
 
+    <!-- Search Section -->
     <section class="search-section">
         <div class="container">
             <h2>Find Your Study Materials</h2>
@@ -690,14 +54,17 @@ body {
         </div>
     </section>
 
+    <!-- Papers Grid Section -->
     <section class="papers-section" id="papers">
         <div class="container">
             <h2>Available Papers</h2>
             <div class="papers-grid" id="papersGrid">
-                </div>
+                <!-- Papers will be dynamically loaded here -->
+            </div>
         </div>
     </section>
 
+    <!-- Related Papers Modal -->
     <div id="relatedPapersModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close-modal" onclick="closeRelatedPapers()">&times;</span>
@@ -706,6 +73,7 @@ body {
         </div>
     </div>
 
+    <!-- Preview Modal -->
     <div id="previewModal" class="modal" style="display: none;">
         <div class="modal-content preview-modal-content">
             <span class="close-modal" onclick="closePreview()">&times;</span>
@@ -732,6 +100,7 @@ body {
                     </div>
                     <div id="difficultyFeedback" style="margin-top: 1rem; display: none;"></div>
                 </div>
+                <!-- PDF Viewer Section -->
                 <div class="pdf-viewer-section" id="pdfViewerSection" style="display: none;">
                     <h4>📄 Preview</h4>
                     <div class="pdf-controls">
@@ -744,44 +113,132 @@ body {
                     </div>
                 </div>
                 <div class="button-group">
-                    <button class="btn-primary" id="previewDownloadBtn" onclick="downloadPreviewedPaper()">📥 Download PDF</button>
-                    <button class="btn-secondary" id="viewFullPreviewBtn" onclick="viewFullPDF()" style="display: none;">🔍 View Full PDF</button>
+                    <button class="btn-primary" id="previewDownloadBtn" onclick="downloadPreviewedPaper()">
+                        📥 Download PDF
+                    </button>
+                    <button class="btn-secondary" id="viewFullPreviewBtn" onclick="viewFullPDF()" style="display: none;">
+                        🔍 View Full PDF
+                    </button>
                 </div>
+            </div>
+            <div class="social-share">
+                <p>Share this paper:</p>
+                <button onclick="sharePaperLink()" class="share-btn">🔗 Copy Link</button>
+                <button onclick="shareViaEmail()" class="share-btn">📧 Share via Email</button>
             </div>
         </div>
     </div>
 
+    <!-- Subjects Section -->
     <section class="subjects-section" id="subjects">
         <div class="container">
-            <h2>Browse by Subject</h2>
-            <div class="subjects-grid">
-                <div class="subject-card" onclick="filterBySubject('Mathematics')"><h3>📐 Mathematics</h3></div>
-                <div class="subject-card" onclick="filterBySubject('Physics')"><h3>⚛️ Physics</h3></div>
-                <div class="subject-card" onclick="filterBySubject('Chemistry')"><h3>🧪 Chemistry</h3></div>
-                <div class="subject-card" onclick="filterBySubject('Biology')"><h3>🦠 Biology</h3></div>
-                <div class="subject-card" onclick="filterBySubject('English')"><h3>📖 English</h3></div>
-                <div class="subject-card" onclick="filterBySubject('History')"><h3>🏛️ History</h3></div>
-                <div class="subject-card" onclick="filterBySubject('Kiswahili')"><h3>📚 Kiswahili</h3></div>
+            <button class="section-toggle" onclick="toggleSection('subjectsContent')">
+                <span>Browse by Subject</span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div class="subjects-grid" id="subjectsContent">
+                <div class="subject-card" onclick="filterBySubject('Mathematics')">
+                    <h3>📐 Mathematics</h3>
+                    <p>Algebra, Geometry, Calculus &amp; more</p>
+                </div>
+                <div class="subject-card" onclick="filterBySubject('Physics')">
+                    <h3>⚛️ Physics</h3>
+                    <p>Mechanics, Thermodynamics &amp; Waves</p>
+                </div>
+                <div class="subject-card" onclick="filterBySubject('Chemistry')">
+                    <h3>🧪 Chemistry</h3>
+                    <p>Organic, Inorganic &amp; Physical Chemistry</p>
+                </div>
+                <div class="subject-card" onclick="filterBySubject('Biology')">
+                    <h3>🦠 Biology</h3>
+                    <p>Cells, Genetics &amp; Evolution</p>
+                </div>
+                <div class="subject-card" onclick="filterBySubject('English')">
+                    <h3>📖 English</h3>
+                    <p>Literature, Grammar &amp; Composition</p>
+                </div>
+                <div class="subject-card" onclick="filterBySubject('History')">
+                    <h3>🏛️ History</h3>
+                    <p>World History &amp; Civilization</p>
+                </div>
+                <div class="subject-card" onclick="filterBySubject('Kiswahili')">
+                    <h3>📚 Kiswahili</h3>
+                    <p>Language, Literature &amp; Grammar</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="contact-section">
+    <!-- About Section -->
+    <section class="about-section" id="about">
         <div class="container">
-            <h2>Contact &amp; Support</h2>
-            <form id="contactForm" class="contact-form" action="https://formcarry.com/s/tM31H9_WYZi" method="post">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn-primary">Send Message</button>
-            </form>
+            <button class="section-toggle" onclick="toggleSection('aboutContent')">
+                <span>About Julisha Library</span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div id="aboutContent">
+                <p>Julisha Library is a free, open-source platform dedicated to providing high-quality revision papers and study materials to students worldwide. Our mission is to make quality education resources accessible to everyone, regardless of their economic background.</p>
+                <div class="features">
+                <div class="feature">
+                    <h3>100% Free</h3>
+                    <p>All materials are completely free to access and download</p>
+                </div>
+                <div class="feature">
+                    <h3>High Quality</h3>
+                    <p>Curated papers from experienced educators</p>
+                </div>
+                <div class="feature">
+                    <h3>Always Updated</h3>
+                    <p>New materials added regularly</p>
+                </div>
+            </div>
+            </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <button class="section-toggle" onclick="toggleSection('contactContent')">
+                <span>Contact &amp; Support</span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div id="contactContent">
+                <form id="contactForm" class="contact-form" action="https://formcarry.com/s/tM31H9_WYZi" method="post">
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">Subject *</label>
+                        <select id="contactSubject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="bug">Report a Bug</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="contribute">Want to Contribute</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message *</label>
+                        <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Julisha Library. Project by Emmanuel Muathe &amp; Marks Nduati.</p>
-            <p><a href="https://github.com/Julishalibrary/julishalibrary.github.io/">Contribute on GitHub</a></p>
+            <p>&copy; 2026 Julisha Library. Project by Emmanuel Muathe &amp; Marks Nduati. All rights reserved.</p>
+            <p>   All revision papers are property of respective authors<a href="https://github.com/Julishalibrary/julishalibrary.github.io/">contribute on GitHub</a></p>
         </div>
     </footer>
 
