@@ -18,12 +18,30 @@ A free, open-source platform for hosting and accessing revision papers and study
 
 ```
 Julisha-Library/
-├── code/
-│   ├── index.html      # Main HTML file
-│   ├── style.css       # Complete styling
-│   └── script.js       # Interactivity and data
-├── README.md           # This file
-└── LICENSE             # MIT License
+├── 📄 README.md              # Main documentation
+├── 📄 QUICK_START.md         # Quick setup
+├── 📄 DEPLOYMENT.md          # Deployment guide
+├── 📄 LICENSE                # MIT License
+├── 📄 .gitignore             # Git ignore rules
+│
+├── 📁 css/                   # Stylesheets
+├── 📁 js/                    # JavaScript
+├── 📁 assets/                # Images & fonts
+├── 📁 papers/                # Study materials
+│   ├── mathematics/
+│   ├── physics/
+│   ├── chemistry/
+│   ├── biology/
+│   ├── english/
+│   ├── history/
+│   └── geography/
+├── 📁 docs/                  # Documentation
+│   ├── CONTRIBUTING.md
+│   ├── STRUCTURE.md
+│   ├── API.md
+│   └── README.md
+│
+└── 📄 index.html #main page
 ```
 🤝 Contributing
 
