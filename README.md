@@ -31,6 +31,7 @@ Julisha-Library/
 │   ├── mathematics/
 │   ├── physics/
 │   ├── chemistry/
+|   ├── kiswahili/
 │   ├── biology/
 │   ├── english/
 │   ├── history/
