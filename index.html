@@ -109,15 +109,7 @@
                 <button class="btn-primary" style="margin-top: 1rem;" onclick="document.getElementById('papers').scrollIntoView({behavior: 'smooth'})">Browse Papers</button>
             </div>
         </section>
-
-        <section class="search-section">
-            <div class="container">
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search by subject, title, or topic..." oninput="filterPapers()">
-                </div>
-            </div>
-        </section>
-
+        
         <section class="subjects-section" id="subjects">
             <div class="container">
                 <h2>Browse by Subject</h2>
@@ -133,6 +125,14 @@
                 </div>
             </div>
         </section>
+        <section class="search-section">
+            <div class="container">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by subject, title, or topic..." oninput="filterPapers()">
+                </div>
+            </div>
+        </section>
+
 
         <section class="papers-section" id="papers">
             <div class="container">
