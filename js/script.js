@@ -18,6 +18,10 @@ const papersData = [
         level: "Form 4",
         description: "Complete KLB Biology Form 4 study guide",
         author: "KLB Publishers",
+        downloads: 0,
+        rating: 0,
+        pages: 0,
+        difficulty: "Hard",
         year: 2026,
 
         pdfUrl: "papers/biology/klb-biology-form-4.pdf"
