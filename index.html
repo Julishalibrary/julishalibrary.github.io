@@ -150,7 +150,53 @@
             <div class="papers-grid" id="papersGrid">
                 </div>
         </section>
+       <section id="feedback-section" style="max-width: 600px; margin: 40px auto; font-family: 'Segoe UI', sans-serif;">
+        <div id="form-card" style="background: white; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 40px; text-align: center; transition: all 0.3s ease;">
+        
+        <div id="state-prompt">
+            <h2 style="color: #2c3e50; margin-bottom: 10px;">Contribute to Julisha Library</h2>
+            <p style="color: #5f6368; margin-bottom: 25px;">Click below to upload notes or report bugs via our secure portal.</p>
+            
+            <a href="https://forms.gle/nnLHCBQNDWnXtSyw8" 
+               target="_blank" 
+               onclick="showThankYou()"
+               style="display: inline-block; background-color: #673ab7; color: white; padding: 14px 30px; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 4px 10px rgba(103, 58, 183, 0.2);">
+               Open Upload Portal
+            </a>
+        </div>
 
+        <div id="state-thanks" style="display: none;">
+            <div style="color: #27ae60; font-size: 3rem; margin-bottom: 15px;">✓</div>
+            <h2 style="color: #2c3e50; margin-bottom: 10px;">Thank You!</h2>
+            <p style="color: #5f6368; line-height: 1.6;">
+                We've opened the submission portal in a new tab. <br>
+                Once you finish uploading, your contribution will be reviewed by our team.
+            </p>
+            <button onclick="resetForm()" style="background: none; border: none; color: #673ab7; cursor: pointer; text-decoration: underline; margin-top: 15px; font-size: 0.9rem;">
+                Need to upload another file?
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function showThankYou() {
+        // Delay the switch slightly so the user sees the click action
+        setTimeout(() => {
+            document.getElementById('state-prompt').style.display = 'none';
+            document.getElementById('state-thanks').style.display = 'block';
+            document.getElementById('form-card').style.borderColor = '#27ae60';
+        }, 500);
+    }
+
+    function resetForm() {
+        document.getElementById('state-prompt').style.display = 'block';
+        document.getElementById('state-thanks').style.display = 'none';
+        document.getElementById('form-card').style.borderColor = '#e0e0e0';
+    }
+</script>
+        
         <section id="contact" class="container" style="max-width: 700px;">
             <h2 class="section-title">Contact Us</h2>
             <form id="contactForm" action="https://formcarry.com/s/tM31H9_WYZi" method="post">
