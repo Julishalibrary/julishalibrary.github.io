@@ -150,52 +150,59 @@
             <div class="papers-grid" id="papersGrid">
                 </div>
         </section>
-       <section id="feedback-section" style="max-width: 600px; margin: 40px auto; font-family: 'Segoe UI', sans-serif;">
-        <div id="form-card" style="background: white; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 40px; text-align: center; transition: all 0.3s ease;">
-        
-        <div id="state-prompt">
-            <h2 style="color: #2c3e50; margin-bottom: 10px;">Contribute to Julisha Library</h2>
-            <p style="color: #5f6368; margin-bottom: 25px;">Click below to upload notes or report bugs via our secure portal.</p>
-            
+    <div id="upload-box" class="container" style="margin-top: 30px; margin-bottom: 30px;">
+    <div style="
+        background: var(--bg-color, transparent); 
+        border: 2px dashed var(--border-color, #673ab7); 
+        border-radius: 15px; 
+        padding: 40px; 
+        text-align: center;
+        color: inherit;
+    ">
+        <div id="prompt-state">
+            <h2 style="margin-top: 0; color: var(--heading-color, inherit);">Contribute Resources</h2>
+            <p style="opacity: 0.8; max-width: 500px; margin: 10px auto 25px auto;">
+                Google prevents embedding forms with file uploads for security. 
+                Click below to open the secure upload portal in a new tab.
+            </p>
             <a href="https://forms.gle/nnLHCBQNDWnXtSyw8" 
                target="_blank" 
-               onclick="showThankYou()"
-               style="display: inline-block; background-color: #673ab7; color: white; padding: 14px 30px; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 4px 10px rgba(103, 58, 183, 0.2);">
-               Open Upload Portal
+               onclick="showSuccess()"
+               style="
+                display: inline-block; 
+                background-color: #673ab7; 
+                color: white !important; 
+                padding: 12px 30px; 
+                border-radius: 50px; 
+                text-decoration: none; 
+                font-weight: bold;
+                box-shadow: 0 4px 15px rgba(103, 58, 183, 0.3);
+               ">
+               Open Secure Portal
             </a>
         </div>
 
-        <div id="state-thanks" style="display: none;">
-            <div style="color: #27ae60; font-size: 3rem; margin-bottom: 15px;">✓</div>
-            <h2 style="color: #2c3e50; margin-bottom: 10px;">Thank You!</h2>
-            <p style="color: #5f6368; line-height: 1.6;">
-                We've opened the submission portal in a new tab. <br>
-                Once you finish uploading, your contribution will be reviewed by our team.
-            </p>
-            <button onclick="resetForm()" style="background: none; border: none; color: #673ab7; cursor: pointer; text-decoration: underline; margin-top: 15px; font-size: 0.9rem;">
-                Need to upload another file?
+        <div id="success-state" style="display: none;">
+            <h2 style="color: #27ae60;">Form Opened!</h2>
+            <p>Once you finish your upload in the other tab, you can close it and return here.</p>
+            <button onclick="resetBox()" style="background: none; border: none; color: #673ab7; cursor: pointer; text-decoration: underline;">
+                Need to upload another?
             </button>
         </div>
-
     </div>
-</section>
+</div>
 
 <script>
-    function showThankYou() {
-        // Delay the switch slightly so the user sees the click action
-        setTimeout(() => {
-            document.getElementById('state-prompt').style.display = 'none';
-            document.getElementById('state-thanks').style.display = 'block';
-            document.getElementById('form-card').style.borderColor = '#27ae60';
-        }, 500);
+    function showSuccess() {
+        document.getElementById('prompt-state').style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
     }
-
-    function resetForm() {
-        document.getElementById('state-prompt').style.display = 'block';
-        document.getElementById('state-thanks').style.display = 'none';
-        document.getElementById('form-card').style.borderColor = '#e0e0e0';
+    function resetBox() {
+        document.getElementById('prompt-state').style.display = 'block';
+        document.getElementById('success-state').style.display = 'none';
     }
 </script>
+        
         
         <section id="contact" class="container" style="max-width: 700px;">
             <h2 class="section-title">Contact Us</h2>
