@@ -8,8 +8,7 @@
     <link rel="canonical" href="https://julishalibrary.github.io/">
     <link rel="icon" type="image/png" href="icon.png?v=5" sizes="16x16">
     <meta name="google-site-verification" content="1NpEXqGjHJ076kgl2akQKAkDWA7ak1TI6JNLNQuBsaw" />
-    <meta name="description" content="Download free high-quality revision papers for Mathematics, Biology, Chemistry and more.">
-
+    
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
@@ -17,18 +16,18 @@
 
     <style amp-custom>
         :root {
-            --primary-color: #1d4ed8; /* High Contrast Blue */
-            --secondary-color: #1e3a8a;
-            --accent-color: #b45309; /* High Contrast Orange */
-            --text-color: #111827;
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-color: #1f2937;
             --bg-color: #f3f4f6;
             --white: #ffffff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
         body.dark-mode {
-            --text-color: #f3f4f6;
+            --text-color: #e5e7eb;
             --bg-color: #111827;
             --white: #1f2937;
         }
@@ -36,52 +35,59 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); transition: var(--transition); }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .d-none { display: none; }
-        
-        /* Navigation */
-        .navbar { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: #ffffff; padding: 1rem 0; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
-        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;}
-        .logo h1 { font-size: 1.5rem; margin-bottom: 0.2rem; color: #ffffff; }
-        .tagline { font-size: 0.85rem; opacity: 0.9; }
+        .d-none { display: none !important; }
+
+        /* Navbar */
+        .navbar { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; padding: 1rem 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .logo h1 { font-size: 1.5rem; color: var(--primary-color); }
+        .tagline { font-size: 0.85rem; color: var(--text-color); opacity: 0.8; }
         .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
-        .nav-links a { color: #ffffff; text-decoration: none; font-weight: 600; }
-        .dark-mode-btn { background: none; border: 2px solid #ffffff; color: #ffffff; padding: 0.5rem; border-radius: 6px; cursor: pointer; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 600; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        .dark-mode-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
 
-        /* Hero */
-        .hero { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: #ffffff; padding: 4rem 2rem; text-align: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #ffffff; }
+        /* Sections */
+        section { padding: 4rem 0; }
+        .section-title { text-align: center; margin-bottom: 2rem; color: var(--primary-color); font-size: 2rem; }
+        .hero { text-align: center; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: #fff; padding: 6rem 20px; }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
 
-        /* General Buttons & Inputs */
-        .btn-primary { background-color: var(--accent-color); color: #ffffff; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .btn-primary:hover { filter: brightness(1.1); }
-        .search-section { padding: 3rem 0; text-align: center; }
-        .search-bar input { width: 100%; max-width: 600px; padding: 1rem; border: 2px solid var(--primary-color); border-radius: 8px; font-size: 1rem; }
+        /* Search */
+        .search-container { max-width: 600px; margin: 0 auto 3rem auto; text-align: center; }
+        .search-container input { width: 100%; padding: 1rem; border: 2px solid var(--primary-color); border-radius: 8px; font-size: 1rem; background: var(--white); color: var(--text-color); }
 
-        /* Grids & Cards */
-        .papers-section, .subjects-section, .about-section, .contact-section { padding: 3rem 0; background-color: var(--white); border-bottom: 1px solid #ddd; }
-        .papers-section h2, .subjects-section h2 { text-align: center; margin-bottom: 2rem; color: var(--primary-color); }
+        /* Grids */
         .papers-grid, .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-        
-        .paper-card, .subject-card { background: var(--bg-color); padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); transition: transform 0.2s; cursor: pointer; text-align: center; border: 1px solid #ddd; }
-        .paper-card:hover, .subject-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
-        
-        .paper-subject { color: var(--primary-color); font-weight: bold; display: block; margin-bottom: 0.5rem; }
-        .paper-stats { margin: 1rem 0; color: #555; font-weight: bold; display: flex; justify-content: center; gap: 1rem; }
-        .download-btn { background-color: var(--primary-color); color: #ffffff; border: none; padding: 0.6rem 1rem; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
+        .card { background: var(--white); padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); transition: var(--transition); cursor: pointer; border: 1px solid transparent; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .subject-card { text-align: center; font-size: 1.2rem; font-weight: bold; color: var(--primary-color); }
+
+        .paper-tags { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.85rem; font-weight: bold; color: var(--primary-color); }
+        .paper-meta { display: flex; gap: 1rem; margin: 1rem 0; font-weight: 600; }
+        .btn-primary, .download-btn { display: inline-block; background: var(--primary-color); color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: bold; text-align: center; width: 100%; transition: var(--transition); }
+        .btn-primary:hover, .download-btn:hover { background: var(--secondary-color); }
+
+        /* Form */
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 6px; background: var(--white); color: var(--text-color); }
 
         /* Modal */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 2000; }
-        .modal-content { background: var(--white); padding: 2rem; border-radius: 12px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; position: relative; }
-        .close-modal { position: absolute; right: 1.5rem; top: 1rem; font-size: 2rem; cursor: pointer; color: var(--text-color); border: none; background: none; }
-        
-        /* Contact Form */
-        .form-group { margin-bottom: 1rem; text-align: left; }
-        .form-group label { display: block; font-weight: bold; margin-bottom: 0.5rem; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 6px; }
+        .modal-content { background: var(--white); padding: 2rem; border-radius: 12px; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative; }
+        .close-modal { position: absolute; right: 1.5rem; top: 1rem; font-size: 2rem; cursor: pointer; border: none; background: none; color: var(--text-color); }
+        .pdf-controls { display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 1rem 0; }
+        .pdf-controls button { background: var(--primary-color); color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+        #pdfCanvas { width: 100%; border: 1px solid #ddd; }
 
         /* Footer */
-        .footer { background: var(--secondary-color); color: #ffffff; text-align: center; padding: 2rem; margin-top: 2rem; }
-        .footer a { color: #ffffff; text-decoration: underline; }
+        .footer { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: #fff; text-align: center; padding: 2rem; margin-top: 2rem; }
+        .footer a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) { .nav-links { gap: 1rem; font-size: 0.9rem; } }
     </style>
 </head>
 <body>
@@ -89,106 +95,101 @@
         <div class="container">
             <div class="logo">
                 <h1>📚 Julisha Library</h1>
-                <p class="tagline">Free Revision Papers</p>
+                <p class="tagline">Free Revision Papers &amp; Study Materials</p>
             </div>
             <nav class="nav-links">
-                <a href="#home">Home</a>
+                <a href="#home" class="active">Home</a>
                 <a href="#papers">Papers</a>
                 <a href="#subjects">Subjects</a>
-                <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙 Mode</button>
+                <a href="#contact">Contact</a>
+                <button class="dark-mode-btn" onclick="toggleDarkMode()" title="Toggle Dark Mode">🌙</button>
             </nav>
         </div>
     </header>
 
-    <main id="main-content">
-        
-        <section class="hero" id="home">
+    <main id="home">
+        <section class="hero">
             <div class="container">
-                <h1>Karibu 👋</h1>
-                <p>Your free resource for high-quality revision papers and study materials.</p>
-                <button class="btn-primary" style="margin-top: 1rem;" onclick="document.getElementById('papers').scrollIntoView({behavior: 'smooth'})">Browse Papers</button>
-            </div>
-        </section>
-        
-        <section class="subjects-section" id="subjects">
-            <div class="container">
-                <h2>Browse by Subject</h2>
-                <div class="subjects-grid">
-                    <div class="subject-card" onclick="filterBySubject('Mathematics')"><h3>📐 Mathematics</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('Physics')"><h3>⚛️ Physics</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('Chemistry')"><h3>🧪 Chemistry</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('Biology')"><h3>🦠 Biology</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('English')"><h3>📖 English</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('History')"><h3>🏛️ History</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('Kiswahili')"><h3>📚 Kiswahili</h3></div>
-                    <div class="subject-card" onclick="filterBySubject('Geography')"><h3>🌍 Geography</h3></div>
-                </div>
-            </div>
-        </section>
-        <section class="search-section">
-            <div class="container">
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search by subject, title, or topic..." oninput="filterPapers()">
+                <h2>Empower Your Learning</h2>
+                <p>Access high-quality revision papers and marking schemes for free.</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search by title, subject, or keyword..." oninput="filterPapers()">
+                    <datalist id="searchSuggestions"></datalist>
                 </div>
             </div>
         </section>
 
-
-        <section class="papers-section" id="papers">
-            <div class="container">
-                <h2>Available Papers</h2>
-                <div class="papers-grid" id="papersGrid">
-                    </div>
+        <section id="subjects" class="container">
+            <h2 class="section-title">Browse by Subject</h2>
+            <div class="subjects-grid">
+                <div class="card subject-card" onclick="filterBySubject('Mathematics')">📐 Mathematics</div>
+                <div class="card subject-card" onclick="filterBySubject('Biology')">🦠 Biology</div>
+                <div class="card subject-card" onclick="filterBySubject('Physics')">⚛️ Physics</div>
+                <div class="card subject-card" onclick="filterBySubject('Chemistry')">🧪 Chemistry</div>
+                <div class="card subject-card" onclick="filterBySubject('Kiswahili')">📖 Kiswahili</div>
+                <div class="card subject-card" onclick="filterBySubject('English')">📝 English</div>
+                <div class="card subject-card" onclick="filterBySubject('History')">🏛️ History</div>
+                <div class="card subject-card" onclick="filterBySubject('Geography')">🌍 Geography</div>
             </div>
         </section>
 
-        <div id="previewModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <button class="close-modal" onclick="closePreview()">&times;</button>
-                <h3 id="previewTitle" style="color: var(--primary-color); margin-bottom: 1rem;">Paper Preview</h3>
-                <p id="previewDescription" style="margin-bottom: 1rem; color: var(--text-color);"></p>
-                
-                <div class="pdf-viewer-section" id="pdfViewerSection">
-                    <canvas id="pdfCanvas" style="width: 100%; border: 1px solid #ddd;"></canvas>
+        <section id="papers" class="container">
+            <h2 class="section-title">Available Papers</h2>
+            <div class="papers-grid" id="papersGrid">
                 </div>
-                
-                <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="btn-primary" id="previewDownloadBtn" onclick="downloadPreviewedPaper()">📥 Download PDF</button>
-                    <button class="btn-primary" onclick="shareViaEmail()" style="background: var(--secondary-color);">📧 Share</button>
-                </div>
-            </div>
-        </div>
-
-        <section class="contact-section">
-            <div class="container" style="max-width: 600px;">
-                <h2>Contact Us</h2>
-                <form id="contactForm" action="https://formcarry.com/s/tM31H9_WYZi" method="post">
-                    <div class="form-group">
-                        <label for="contactName">Name</label>
-                        <input type="text" id="contactName" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Email</label>
-                        <input type="email" id="contactEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactMessage">Message</label>
-                        <textarea id="contactMessage" name="message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
-                </form>
-            </div>
         </section>
 
+        <section id="contact" class="container" style="max-width: 700px;">
+            <h2 class="section-title">Contact Us</h2>
+            <form id="contactForm" action="https://formcarry.com/s/tM31H9_WYZi" method="post">
+                <div class="form-group">
+                    <label for="contactSubject">Subject *</label>
+                    <select id="contactSubject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="bug">Report a Bug</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="contribute">Want to Contribute</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </section>
     </main>
+
+    <div id="previewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePreview()">&times;</button>
+            <h3 id="previewTitle" style="color: var(--primary-color); margin-bottom: 0.5rem;"></h3>
+            <p id="previewAuthor" style="font-weight: bold;"></p>
+            <p id="previewYear" style="color: var(--accent-color);"></p>
+            <p id="previewDescription" style="margin-bottom: 1rem;"></p>
+            
+            <div id="pdfViewerSection">
+                <div class="pdf-controls">
+                    <button onclick="previousPage()">◀ Previous</button>
+                    <span id="pageInfo">Page <span id="currentPage">1</span> of <span id="totalPages">0</span></span>
+                    <button onclick="nextPage()">Next ▶</button>
+                </div>
+                <canvas id="pdfCanvas"></canvas>
+            </div>
+            
+            <button class="btn-primary" onclick="downloadPreviewedPaper()" style="margin-top: 1.5rem;">📥 Download PDF</button>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Julisha Library. Project by Emmanuel Muathe &amp; Marks Nduati.</p>
-            <p><a href="https://github.com/Julishalibrary/julishalibrary.github.io/">Contribute on GitHub</a></p>
+            <p>&copy; 2026 Julisha Library. Project by Emmanuel Muathe &amp; Marks Nduati. All rights reserved.</p>
+            <p>All revision papers are property of respective authors. <a href="https://github.com/Julishalibrary/julishalibrary.github.io/">Contribute on GitHub</a></p>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
 </body>
-</html>
+    </html>
+    
