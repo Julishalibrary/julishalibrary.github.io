@@ -494,3 +494,9 @@ function toggleSection(id) {
     if (!el) return;
     el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
 }
+function filterBySubject(subject) {
+    const input = document.getElementById('searchInput');
+    input.value = subject;
+    filterPapers(); // Runs your existing filter logic
+    document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
+}
