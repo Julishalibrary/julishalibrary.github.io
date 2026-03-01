@@ -497,3 +497,17 @@ function toggleSection(id) {
     if (!el) return;
     el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
 }
+function filterBySubject(subject) {
+    // 1. Update the search bar text so the user knows what is being filtered
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = subject;
+
+    // 2. Scroll smoothly to the papers section
+    document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
+
+    // 3. Filter the data array
+    const filtered = papersData.filter(paper => paper.subject.toLowerCase() === subject.toLowerCase());
+    
+    // 4. Render the newly filtered list
+    renderPapers(filtered);
+}
