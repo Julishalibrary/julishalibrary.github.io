@@ -2,7 +2,7 @@
   "name": "Julisha Library",
   "short_name": "Julisha Library",
   "description": "Access free high-quality revision papers, marking schemes, and study materials.",
-  "id": "Julisha Library",
+  "id": "com.julishalibrary.app",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
