@@ -26,16 +26,19 @@
 </head>
 <body>
     <header class="navbar">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div class="container nav-container">
             <div class="logo">
                 <h1>📚 Julisha Library</h1>
                 <p class="tagline">Free Revision Papers &amp; Study Materials</p>
             </div>
-            <nav class="nav-links">
-                <a href="#home" class="active">Home</a>
-                <a href="#papers">Papers</a>
-                <a href="#subjects">Subjects</a>
-                <a href="#contact">Contact</a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="active" onclick="closeMobileMenu()">Home</a>
+                <a href="#papers" onclick="closeMobileMenu()">Papers</a>
+                <a href="#subjects" onclick="closeMobileMenu()">Subjects</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
                 <button class="dark-mode-btn" onclick="toggleDarkMode()" title="Toggle Dark Mode">🌙</button>
             </nav>
         </div>
@@ -53,21 +56,21 @@
         <section id="subjects" class="container subjects-section">
             <h2 class="section-title">Browse by Subject</h2>
             <div class="subjects-grid">
-                <div class="card subject-card" onclick="filterBySubject('Mathematics')">📐 Mathematics</div>
-                <div class="card subject-card" onclick="filterBySubject('Biology')">🦠 Biology</div>
-                <div class="card subject-card" onclick="filterBySubject('Physics')">⚛️ Physics</div>
-                <div class="card subject-card" onclick="filterBySubject('Chemistry')">🧪 Chemistry</div>
-                <div class="card subject-card" onclick="filterBySubject('Kiswahili')">📖 Kiswahili</div>
-                <div class="card subject-card" onclick="filterBySubject('English')">📝 English</div>
-                <div class="card subject-card" onclick="filterBySubject('History')">🏛️ History</div>
-                <div class="card subject-card" onclick="filterBySubject('Geography')">🌍 Geography</div>
+                <div class="subject-card" onclick="filterBySubject('Mathematics')"><h3>📐 Mathematics</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Biology')"><h3>🦠 Biology</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Physics')"><h3>⚛️ Physics</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Chemistry')"><h3>🧪 Chemistry</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Kiswahili')"><h3>📖 Kiswahili</h3></div>
+                <div class="subject-card" onclick="filterBySubject('English')"><h3>📝 English</h3></div>
+                <div class="subject-card" onclick="filterBySubject('History')"><h3>🏛️ History</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Geography')"><h3>🌍 Geography</h3></div>
             </div>
         </section>
         
         <section id="search" class="container search-section">
             <div class="search-container search-bar">
-                <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search by title, subject, or keyword...">
-                <datalist id="searchSuggestions"></datalist>
+                <input type="text" id="searchInput" placeholder="Search by title, subject, or keyword..." autocomplete="off">
+                <div id="customSearchSuggestions" class="custom-suggestions d-none"></div>
             </div>
         </section>
 
@@ -76,37 +79,33 @@
             <div class="papers-grid" id="papersGrid"></div>
         </section>
 
-        <section id="contribute" class="container" style="margin-top: 2rem; margin-bottom: 2rem;">
-            <div id="julisha-upload-card" style="background: var(--white); border: 2px dashed var(--primary-color); border-radius: 12px; padding: 3rem 1.5rem; text-align: center; box-shadow: var(--shadow); transition: var(--transition);">
+        <section id="contribute" class="container upload-section">
+            <div id="julisha-upload-card" class="upload-card">
                 <div id="prompt-state">
-                    <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Contribute to the Library</h2>
-                    <p style="color: var(--text-color); opacity: 0.9; max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem;">
+                    <h2>Contribute to the Library</h2>
+                    <p class="upload-desc">
                         Help fellow students by sharing your revision papers. Due to security policies, file uploads open in a secure Google window.
                     </p>
-                    <a href="https://forms.gle/nnLHCBQNDWnXtSyw8" target="_blank" onclick="showSuccessState()" class="btn-primary" style="text-decoration: none; display: inline-block; width: auto; padding: 1rem 2.5rem; font-size: 1.1rem;">
+                    <a href="https://forms.gle/nnLHCBQNDWnXtSyw8" target="_blank" onclick="showSuccessState()" class="btn-primary btn-inline">
                        📤 Open Upload Portal
                     </a>
                 </div>
 
-                <div id="success-state" style="display: none;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                    <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Form Opened Successfully</h2>
-                    <p style="color: var(--text-color); margin-bottom: 1.5rem;">
-                        Please complete your upload in the new tab. <br>Once submitted, you can safely return here.
-                    </p>
-                    <button onclick="resetUploadBox()" style="background: none; border: none; color: var(--primary-color); cursor: pointer; text-decoration: underline; font-weight: bold;">
-                        Need to upload more files?
-                    </button>
+                <div id="success-state" class="d-none">
+                    <div class="success-icon">✅</div>
+                    <h2>Form Opened Successfully</h2>
+                    <p>Please complete your upload in the new tab. <br>Once submitted, you can safely return here.</p>
+                    <button class="text-btn" onclick="resetUploadBox()">Need to upload more files?</button>
                 </div>
             </div>
         </section>
         
-        <section id="contact" class="container" style="max-width: 700px; padding: 4rem 0;">
-            <h2 class="section-title" style="text-align: center; color: var(--primary-color);">Contact Us</h2>
-            <form id="contactForm" action="https://formcarry.com/s/tM31H9_WYZi" method="post">
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="contactSubject" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Subject *</label>
-                    <select id="contactSubject" name="subject" required style="width: 100%; padding: 0.8rem; border-radius: 6px; border: 1px solid #ccc;">
+        <section id="contact" class="container contact-section">
+            <h2 class="section-title contact-title">Contact Us</h2>
+            <form id="contactForm" action="https://formcarry.com/s/tM31H9_WYZi" method="post" class="contact-form">
+                <div class="form-group">
+                    <label for="contactSubject">Subject *</label>
+                    <select id="contactSubject" name="subject" required class="form-control">
                         <option value="">Select a subject</option>
                         <option value="bug">Report a Bug</option>
                         <option value="feature">Feature Request</option>
@@ -114,15 +113,15 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Your Email Address *</label>
-                    <input type="email" name="email" placeholder="email@example.com" required style="width: 100%; padding: 0.8rem; border-radius: 6px; border: 1px solid #ccc;">
+                <div class="form-group">
+                    <label>Your Email Address *</label>
+                    <input type="email" name="email" placeholder="email@example.com" required class="form-control">
                 </div>
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="contactMessage" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Message *</label>
-                    <textarea id="contactMessage" name="message" rows="5" required style="width: 100%; padding: 0.8rem; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" name="message" rows="5" required class="form-control"></textarea>
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                <button type="submit" class="btn-primary w-100">Send Message</button>
             </form>
         </section>
     </main>
@@ -130,14 +129,23 @@
     <div id="previewModal" class="modal" style="display: none;">
         <div class="modal-content">
             <button class="close-modal" onclick="closePreview()">&times;</button>
-            <h3 id="previewTitle" style="color: var(--primary-color); margin-bottom: 0.5rem;"></h3>
-            <p id="previewAuthor" style="font-weight: bold;"></p>
-            <p id="previewYear" style="color: var(--accent-color);"></p>
-            <p id="previewDescription" style="margin-bottom: 1rem;"></p>
+            <div class="preview-header">
+                <h3 id="previewTitle"></h3>
+                <div class="preview-meta">
+                    <span id="previewAuthor"></span>
+                    <span id="previewYear" style="color: var(--accent-color);"></span>
+                </div>
+            </div>
+            <p id="previewDescription" class="preview-body"></p>
             
-            <div id="pdfViewerSection">
+            <div id="pdfLoading" class="pdf-loading d-none">
+                <div class="spinner"></div>
+                <p>Loading PDF...</p>
+            </div>
+
+            <div id="pdfViewerSection" style="display: none;">
                 <div class="pdf-controls">
-                    <button class="pdf-btn" onclick="previousPage()">◀ Previous</button>
+                    <button class="pdf-btn" onclick="previousPage()">◀ Prev</button>
                     <span id="pageInfo">Page <span id="currentPage">1</span> of <span id="totalPages">0</span></span>
                     <button class="pdf-btn" onclick="nextPage()">Next ▶</button>
                 </div>
@@ -146,7 +154,7 @@
                 </div>
             </div>
             
-            <button class="btn-primary" onclick="downloadPreviewedPaper()" style="margin-top: 1.5rem; width: 100%;">📥 Download PDF</button>
+            <button class="btn-primary w-100 mt-3" onclick="downloadPreviewedPaper()">📥 Download PDF</button>
         </div>
     </div>
 
@@ -156,21 +164,5 @@
             <p>All revision papers are property of respective authors. <a href="https://github.com/Julishalibrary/julishalibrary.github.io/">Contribute on GitHub</a></p>
         </div>
     </footer>
-
-    <script>
-        function showSuccessState() {
-            setTimeout(() => {
-                document.getElementById('prompt-state').style.display = 'none';
-                document.getElementById('success-state').style.display = 'block';
-                document.getElementById('julisha-upload-card').style.borderColor = 'var(--accent-color)';
-            }, 500);
-        }
-
-        function resetUploadBox() {
-            document.getElementById('prompt-state').style.display = 'block';
-            document.getElementById('success-state').style.display = 'none';
-            document.getElementById('julisha-upload-card').style.borderColor = 'var(--primary-color)';
-        }
-    </script>
 </body>
 </html>

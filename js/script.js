@@ -4,9 +4,32 @@ function toggleDarkMode() {
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 }
 
-// Load saved dark mode preference
 if (localStorage.getItem('darkMode') === 'true') {
     document.body.classList.add('dark-mode');
+}
+
+// --- Mobile Menu Toggle ---
+function toggleMobileMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+
+function closeMobileMenu() {
+    document.getElementById('navLinks').classList.remove('active');
+}
+
+// --- Upload State Handlers (Moved from HTML inline scripts) ---
+function showSuccessState() {
+    setTimeout(() => {
+        document.getElementById('prompt-state').classList.add('d-none');
+        document.getElementById('success-state').classList.remove('d-none');
+        document.getElementById('julisha-upload-card').classList.add('success');
+    }, 500);
+}
+
+function resetUploadBox() {
+    document.getElementById('prompt-state').classList.remove('d-none');
+    document.getElementById('success-state').classList.add('d-none');
+    document.getElementById('julisha-upload-card').classList.remove('success');
 }
 
 // --- 2. Cleaned Papers Data ---
@@ -39,14 +62,12 @@ let pageNumPending = null;
 
 // Add PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
 window.papersData = papersData;
 
 // --- 3. Initial Load & Event Listeners ---
 document.addEventListener('DOMContentLoaded', function() {
     renderPapers(papersData);
 
-    // Debounce search input to drastically improve mobile performance
     const searchInput = document.getElementById('searchInput');
     let debounceTimeout;
     
@@ -55,7 +76,14 @@ document.addEventListener('DOMContentLoaded', function() {
             clearTimeout(debounceTimeout);
             debounceTimeout = setTimeout(() => {
                 filterPapers();
-            }, 300); // Waits 300ms after user stops typing before filtering
+            }, 300);
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!document.querySelector('.search-bar').contains(e.target)) {
+                document.getElementById('customSearchSuggestions').classList.add('d-none');
+            }
         });
     }
 });
@@ -70,19 +98,24 @@ function renderPapers(papers) {
         return;
     }
 
+    // Bug Fix: Using the correct CSS structure defined in style.css
     papersGrid.innerHTML = papers.map(paper => `
-        <div class="card" onclick="previewPaper(${paper.id})">
-            <div class="paper-tags">
-                <span>${paper.subject}</span>
-                <span>${paper.level}</span>
+        <div class="paper-card" onclick="previewPaper(${paper.id})">
+            <div class="paper-header">
+                <div class="paper-tags">
+                    <span class="paper-subject">${paper.subject}</span>
+                    <span class="paper-level">${paper.level}</span>
+                </div>
+                <h3>${paper.title}</h3>
             </div>
-            <h3 style="margin-bottom: 0.5rem;">${paper.title}</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-color);">${paper.description}</p>
-            <div class="paper-meta">
-                <span>⭐ ${paper.rating}</span>
-                <span>📥 ${paper.downloads}</span>
+            <div class="paper-body">
+                <p class="paper-description">${paper.description}</p>
+                <div class="paper-meta">
+                    <span>⭐ ${paper.rating}</span>
+                    <span>📥 ${paper.downloads}</span>
+                </div>
+                <button class="download-btn" onclick="downloadPaper(event, '${paper.pdfUrl}', '${paper.title}')">📥 Download PDF</button>
             </div>
-            <button class="download-btn" onclick="downloadPaper(event, '${paper.pdfUrl}', '${paper.title}')">📥 Download</button>
         </div>
     `).join('');
 }
@@ -104,17 +137,19 @@ function filterBySubject(subject) {
         input.value = subject;
         filterPapers();
         document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('customSearchSuggestions').classList.add('d-none'); // Hide dropdown after clicking subject
     }
 }
 
+// Custom Dropdown logic
 function showSearchSuggestions() {
     const input = document.getElementById('searchInput');
-    const datalist = document.getElementById('searchSuggestions');
-    if (!input || !datalist) return;
+    const suggestionBox = document.getElementById('customSearchSuggestions');
+    if (!input || !suggestionBox) return;
     
     const term = input.value.toLowerCase();
     if (term.length < 2) {
-        datalist.innerHTML = '';
+        suggestionBox.classList.add('d-none');
         return;
     }
 
@@ -123,13 +158,22 @@ function showSearchSuggestions() {
         .map(p => p.title);
         
     const unique = [...new Set(suggestions)];
-    datalist.innerHTML = unique.map(s => `<option value="${s}">`).join('');
+    
+    if (unique.length > 0) {
+        suggestionBox.innerHTML = unique.map(s => 
+            `<div class="suggestion-item" onclick="selectSuggestion('${s}')">${s}</div>`
+        ).join('');
+        suggestionBox.classList.remove('d-none');
+    } else {
+        suggestionBox.classList.add('d-none');
+    }
 }
 
-function toggleSection(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+function selectSuggestion(value) {
+    const input = document.getElementById('searchInput');
+    input.value = value;
+    document.getElementById('customSearchSuggestions').classList.add('d-none');
+    filterPapers();
 }
 
 // --- 5. PDF Modal & Pagination Logic ---
@@ -144,29 +188,47 @@ function previewPaper(paperId) {
     document.getElementById('previewDescription').textContent = paper.description;
     
     document.getElementById('previewModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
     loadPDF(paper.pdfUrl);
 }
 
 function closePreview() {
     document.getElementById('previewModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore background scrolling
     pdfDoc = null;
     pageNum = 1;
+    document.getElementById('pdfViewerSection').style.display = 'none'; // Hide viewer until next load
 }
 
 function loadPDF(url) {
     const pdfViewerSection = document.getElementById('pdfViewerSection');
+    const loadingState = document.getElementById('pdfLoading');
     
+    // Show loading UI
+    loadingState.classList.remove('d-none');
+    pdfViewerSection.style.display = 'none';
+
     pdfjsLib.getDocument(url).promise.then(function (pdf) {
         pdfDoc = pdf;
         document.getElementById('totalPages').textContent = pdf.numPages;
+        
+        // Hide loading UI, show Viewer
+        loadingState.classList.add('d-none');
         pdfViewerSection.style.display = 'block';
+        
         renderPage(pageNum);
     }).catch(function (error) {
         console.error('Error loading PDF:', error);
+        loadingState.classList.add('d-none');
+        pdfViewerSection.style.display = 'block';
+        
         const canvas = document.getElementById('pdfCanvas');
         const ctx = canvas.getContext('2d');
+        canvas.height = 150; // Give it some height for the error message
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.font = "16px Arial";
+        ctx.fillStyle = "red";
         ctx.fillText("Preview unavailable locally or file missing.", 20, 50);
         document.getElementById('totalPages').textContent = "0";
     });
@@ -179,7 +241,12 @@ function renderPage(num) {
     pdfDoc.getPage(num).then(function (page) {
         const canvas = document.getElementById('pdfCanvas');
         const ctx = canvas.getContext('2d');
-        const viewport = page.getViewport({ scale: 1.2 });
+        
+        // Responsive scaling
+        const containerWidth = canvas.parentElement.clientWidth;
+        let viewport = page.getViewport({ scale: 1 });
+        const scale = containerWidth / viewport.width;
+        viewport = page.getViewport({ scale: scale > 1.2 ? 1.2 : scale }); // Cap scale at 1.2 for clarity
 
         canvas.height = viewport.height;
         canvas.width = viewport.width;
