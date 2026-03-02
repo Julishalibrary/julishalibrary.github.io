@@ -2,12 +2,14 @@
 :root {
     --primary-color: #3b82f6;
     --secondary-color: #1e40af;
-    --accent-color: #f59e0b;
+    /* Darkened accent color for better accessibility contrast ratio */
+    --accent-color: #d97706; 
     --text-color: #1f2937;
     --bg-color: #f3f4f6;
     --white: #ffffff;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
+    /* Explicit transitions to prevent CLS layout shifts caused by "all" */
+    --transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Dark Mode */
@@ -15,7 +17,10 @@ body.dark-mode {
     --text-color: #e5e7eb;
     --bg-color: #111827;
     --white: #1f2937;
+    /* Ensure accent is highly visible in dark mode too */
+    --accent-color: #f59e0b; 
 }
+/* The rest of your style.css remains exactly the same below here... */
 
 /* General Styles */
 * {
