@@ -42,9 +42,22 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 window.papersData = papersData;
 
-// --- 3. Initial Load ---
+// --- 3. Initial Load & Event Listeners ---
 document.addEventListener('DOMContentLoaded', function() {
     renderPapers(papersData);
+
+    // Debounce search input to drastically improve mobile performance
+    const searchInput = document.getElementById('searchInput');
+    let debounceTimeout;
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(() => {
+                filterPapers();
+            }, 300); // Waits 300ms after user stops typing before filtering
+        });
+    }
 });
 
 // --- 4. Render & Filter Functions ---
@@ -220,4 +233,4 @@ function downloadPreviewedPaper() {
     if (currentPreviewedPaper) {
         downloadPaper(null, currentPreviewedPaper.pdfUrl, currentPreviewedPaper.title);
     }
-     }
+}
