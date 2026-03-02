@@ -2,11 +2,11 @@
   "name": "Julisha Library",
   "short_name": "Julisha Library",
   "description": "Access free high-quality revision papers, marking schemes, and study materials.",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3b82f6",
-  "orientation": "portrait",
+  "orientation": "any",
   "icons": [
     {
       "src": "icon-192.png",
@@ -20,5 +20,13 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["books", "education"]
+  "categories": [
+    "books",
+    "education"
+  ],
+  "id": "Julisha Library",
+  "dir": "auto",
+  "scope": "/index.html",
+  "lang": "en",
+  "prefer_related_applications": false
 }
