@@ -53,7 +53,7 @@ Contributions are welcome! To contribute:
 3. Make improvements or add new papers
 4. Submit a pull request with a clear description
 
-💡 Suggestions for Expansion
+💡 Future upgrades
 
 - Implement user accounts and collections
 - Add PDF upload functionality
@@ -70,7 +70,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
  🙏 Acknowledgments
 
 - Built with ❤️ for students worldwide
-- Inspired by platforms like StudyUCO
+- Inspired by platforms like Studocu
 
  📞 Support
 
