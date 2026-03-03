@@ -1,1 +1,8 @@
-
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.julishalibrary.app",
+        "sha256_cert_fingerprints": ["67:F7:A2:D3:86:1A:55:44:9D:46:EA:AC:39:1C:7F:95:D9:2D:AA:E2:DC:4B:79:B0:5A:42:92:DD:97:09:0F:C8"]
+      }
+    }]
