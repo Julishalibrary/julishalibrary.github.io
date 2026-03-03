@@ -33,12 +33,5 @@
     "books",
     "education"
   ],
-  "prefer_related_applications": false,
-  "shortcuts": [
-    {
-      "name": "View Papers",
-      "url": "/#papers",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
-    }
-  ]
+  "prefer_related_applications": false
 }
