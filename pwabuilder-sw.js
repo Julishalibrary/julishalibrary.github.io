@@ -1,8 +1,7 @@
+// Cache Name
+const CACHE_NAME = 'julisha-cache-v6';
 
-// 2. Cache Name (Fixed the capital 'C' and updated to v5)
-const CACHE_NAME = 'julisha-cache-v5';
-
-// 3. Essential Files to Cache
+// Essential Files to Cache
 const urlsToCache = [
   '/',
   '/index.html',
@@ -35,7 +34,6 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// 4. The strict Offline Fallback PWABuilder needs
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
@@ -48,17 +46,14 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// 5. Background Sync
 self.addEventListener('sync', (event) => {
   if (event.tag === 'sync-forms') {
     console.log('Background Sync triggered! Internet connection restored.');
   }
 });
 
-// 6. Periodic Sync
 self.addEventListener('periodicsync', (event) => {
   if (event.tag === 'update-papers') {
-    console.log('Periodic Sync triggered! Fetching new papers...');
     event.waitUntil(
       caches.open(CACHE_NAME).then((cache) => cache.add('/papers.json'))
     );
