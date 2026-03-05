@@ -41,10 +41,6 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height
 .dark-mode-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
 .mobile-menu-btn { display: none; background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer; }
 
-/* Hero Section */
-.hero { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--white); padding: 6rem 2rem; text-align: center; }
-.hero-content h1 { font-size: 3rem; margin-bottom: 1rem; }
-.hero-content p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; }
 
 /* Buttons */
 .btn-primary { background-color: var(--accent-color); color: var(--white); border: none; padding: 1rem 2.5rem; font-size: 1rem; border-radius: 50px; cursor: pointer; font-weight: 600; transition: var(--transition); box-shadow: var(--shadow); display: inline-block; text-align: center; text-decoration: none; min-height: 44px; }
