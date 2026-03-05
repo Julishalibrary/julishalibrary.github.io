@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E6XG89SEHK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-E6XG89SEHK');
+    </script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+    
+    <title>Julisha Library - Free Revision Papers</title>
+    <meta name="description" content="Access free high-quality revision papers, marking schemes, and study materials for Mathematics, Physics, Chemistry, Biology, and more.">
+    
+    <link rel="canonical" href="https://julishalibrary.github.io/">
+    <link rel="icon" type="image/png" href="icon.png?v=5" sizes="16x16">
+    <meta name="google-site-verification" content="1NpEXqGjHJ076kgl2akQKAkDWA7ak1TI6JNLNQuBsaw" />
+    
+    <link rel="stylesheet" href="css/style.css">
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h1>📚 Julisha Library</h1>
+                <p class="tagline">Free Revision Papers &amp; Study Materials</p>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="active" onclick="closeMobileMenu()">Home</a>
+                <a href="#papers" onclick="closeMobileMenu()">Papers</a>
+                <a href="#subjects" onclick="closeMobileMenu()">Subjects</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+                <button class="dark-mode-btn" onclick="toggleDarkMode()" title="Toggle Dark Mode">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Jiboreshe Kimasomo</h1>
+                <h2>Empower Your Learning</h2>
+                <p>Access high-quality revision papers and marking schemes for free.</p>
+            </div>
+        </section>
+
+        <section id="subjects" class="subjects-section">
+            <h2 class="section-title">Browse by Subject</h2>
+            <div class="subjects-grid">
+                <div class="subject-card" onclick="filterBySubject('Mathematics')"><h3>📐 Mathematics</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Biology')"><h3>🦠 Biology</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Physics')"><h3>⚛️ Physics</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Chemistry')"><h3>🧪 Chemistry</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Kiswahili')"><h3>📖 Kiswahili</h3></div>
+                <div class="subject-card" onclick="filterBySubject('English')"><h3>📝 English</h3></div>
+                <div class="subject-card" onclick="filterBySubject('History')"><h3>🏛️ History</h3></div>
+                <div class="subject-card" onclick="filterBySubject('Geography')"><h3>🌍 Geography</h3></div>
+            </div>
+        </section>
+        
+        <section id="search" class="container search-section">
+            <div class="search-container search-bar">
+                <input type="text" id="searchInput" placeholder="Search by title, subject, or keyword..." autocomplete="off">
+                <div id="customSearchSuggestions" class="custom-suggestions d-none"></div>
+            </div>
+        </section>
+
+        <section id="papers" class="container papers-section">
+            <h2 class="section-title">Available Papers</h2>
+            <div class="papers-grid" id="papersGrid"></div>
+        </section>
+
+        <section id="contribute" class="container upload-section">
+            <div id="julisha-upload-card" class="upload-card">
+                <div id="prompt-state">
+                    <h2>Contribute to the Library</h2>
+                    <p class="upload-desc">
+                        Help fellow students by sharing your revision papers. Due to security policies, file uploads open in a secure Google window.
+                    </p>
+                    <a href="https://forms.gle/nnLHCBQNDWnXtSyw8" target="_blank" onclick="showSuccessState()" class="btn-primary btn-inline">
+                       📤 Open Upload Portal
+                    </a>
+                </div>
+
+                <div id="success-state" class="d-none">
+                    <div class="success-icon">✅</div>
+                    <h2>Form Opened Successfully</h2>
+                    <p>Please complete your upload in the new tab. <br>Once submitted, you can safely return here.</p>
+                    <button class="text-btn" onclick="resetUploadBox()">Need to upload more files?</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="container contact-section">
+            <h2 class="section-title contact-title">Contact Us</h2>
+            <form id="contactForm" action="https://formcarry.com/s/tM31H9_WYZi" method="post" class="contact-form">
+                <div class="form-group">
+                    <label for="contactSubject">Subject *</label>
+                    <select id="contactSubject" name="subject" required class="form-control">
+                        <option value="">Select a subject</option>
+                        <option value="bug">Report a Bug</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="contribute">Want to Contribute</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Email Address *</label>
+                    <input type="email" name="email" placeholder="email@example.com" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" name="message" rows="5" required class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-100">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <div id="previewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePreview()">&times;</button>
+            <div class="preview-header">
+                <h3 id="previewTitle"></h3>
+                <div class="preview-meta">
+                    <span id="previewAuthor"></span>
+                    <span id="previewYear" style="color: var(--accent-color);"></span>
+                </div>
+            </div>
+            <p id="previewDescription" class="preview-body"></p>
+            
+            <div id="pdfLoading" class="pdf-loading d-none">
+                <div class="spinner"></div>
+                <p>Loading PDF...</p>
+            </div>
+
+            <div id="pdfViewerSection" style="display: none;">
+                <div class="pdf-controls">
+                    <button class="pdf-btn" onclick="previousPage()">◀ Prev</button>
+                    <span id="pageInfo">Page <span id="currentPage">1</span> of <span id="totalPages">0</span></span>
+                    <button class="pdf-btn" onclick="nextPage()">Next ▶</button>
+                </div>
+                <div class="pdf-canvas-wrapper">
+                    <canvas id="pdfCanvas"></canvas>
+                </div>
+            </div>
+            
+            <button class="btn-primary w-100 mt-3" onclick="downloadPreviewedPaper()">📥 Download PDF</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Julisha Library. Project by Emmanuel Muathe &amp; Marks Nduati. All rights reserved.</p>
+            <p>All revision papers are property of respective authors. <a href="https://github.com/Julishalibrary/julishalibrary.github.io/">Contribute on GitHub</a></p>
+        </div>
+    </footer>
+    <script>
+  // This registers your Service Worker so the app can work offline
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('pwabuilder-sw.js')
+        .then(registration => {
+          console.log('ServiceWorker registration successful!');
+        })
+        .catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
