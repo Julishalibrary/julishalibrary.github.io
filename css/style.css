@@ -23,7 +23,7 @@ body.dark-mode {
 /* General Styles */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); transition: var(--transition); }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.container { max-width: 1200px; margin: 0; padding: 0 20px; }
 .d-none { display: none !important; }
 .w-100 { width: 100%; }
 .mt-3 { margin-top: 1.5rem; }
