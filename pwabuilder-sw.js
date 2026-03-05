@@ -1,5 +1,3 @@
-// 1. OneSignal Integration (Must be at the very top)
-importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
 
 // 2. Cache Name (Fixed the capital 'C' and updated to v5)
 const CACHE_NAME = 'julisha-cache-v5';
