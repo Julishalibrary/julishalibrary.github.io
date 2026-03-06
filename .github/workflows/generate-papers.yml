@@ -1,1 +1,95 @@
+name: Generate papers.json
 
+on:
+  push:
+    paths:
+      - 'papers/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate papers.json
+        run: |
+          python3 << 'EOF'
+          import os, json, re
+
+          PAPERS_DIR = "papers"
+          SUBJECT_MAP = {
+              "mathematics": "Mathematics", "physics": "Physics",
+              "chemistry": "Chemistry",     "biology": "Biology",
+              "english": "English",         "kiswahili": "Kiswahili",
+              "history": "History",         "geography": "Geography",
+          }
+
+          def guess_subject(folder):
+              return SUBJECT_MAP.get(folder.lower(), "General")
+
+          def guess_level(filename):
+              m = re.search(r'form[\s\-_]?(\d)', filename, re.IGNORECASE)
+              return f"Form {m.group(1)}" if m else ""
+
+          def guess_type(filename):
+              f = filename.lower()
+              if "marking" in f or "scheme" in f: return "Marking Scheme"
+              if "question" in f:                 return "Question Paper"
+              return "Study Material"
+
+          def make_title(folder, filename):
+              name = os.path.splitext(filename)[0]
+              name = re.sub(r'_[a-f0-9]{20,}$', '', name)
+              name = re.sub(r'\s*\(\d+\)\s*$', '', name).strip()
+              if " - " in name:
+                  parts = [p.strip() for p in name.split(" - ")]
+                  if parts[0].lower() == folder.lower():
+                      parts = parts[1:]
+                  return " — ".join(parts)
+              return name.replace("-", " ").replace("_", " ").title()
+
+          output = []
+          paper_id = 1
+
+          for folder in sorted(os.listdir(PAPERS_DIR)):
+              folder_path = os.path.join(PAPERS_DIR, folder)
+              if not os.path.isdir(folder_path):
+                  continue
+              subject = guess_subject(folder)
+              for filename in sorted(os.listdir(folder_path)):
+                  if not filename.lower().endswith(".pdf"):
+                      continue
+                  is_zeraki = "zeraki" in filename.lower()
+                  level    = guess_level(filename)
+                  doc_type = guess_type(filename)
+                  output.append({
+                      "id":          paper_id,
+                      "title":       make_title(folder, filename),
+                      "subject":     subject,
+                      "level":       level,
+                      "type":        doc_type,
+                      "description": f"{subject} {level} {doc_type} — Zeraki Achievers 3.0." if is_zeraki else f"{subject} {level} revision material.",
+                      "author":      "Zeraki Achievers" if is_zeraki else "Julisha Library",
+                      "year":        2026,
+                      "pdfUrl":      f"{PAPERS_DIR}/{folder}/{filename}",
+                      "rating":      4.5,
+                      "downloads":   0
+                  })
+                  paper_id += 1
+
+          with open("papers.json", "w") as f:
+              json.dump(output, f, indent=2)
+          print(f"Generated {len(output)} papers.")
+          EOF
+
+      - name: Commit papers.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add papers.json
+          git diff --staged --quiet && echo "No changes." || git commit -m "chore: auto-update papers.json [skip ci]"
+          git push
