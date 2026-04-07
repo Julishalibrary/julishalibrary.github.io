@@ -361,6 +361,7 @@ function previewPaper(paperId) {
     document.getElementById('previewDescription').textContent = paper.description;
 
     document.getElementById('previewModal').style.display = 'flex';
+    renderRelatedPapers(paper);
 
     // Load PDF preview
     loadPDF(paper.pdfUrl);
@@ -373,6 +374,65 @@ function closePreview() {
     document.getElementById('previewModal').style.display = 'none';
     pdfDoc = null;
     pageNum = 1;
+}
+
+/**
+ * Compute related papers by shared subject / level.
+ * - +2 score for matching subject
+ * - +1 score for matching level
+ */
+function getRelatedPapers(paper, limit = 6) {
+    if (!paper) return [];
+
+    return papersData
+        .filter(candidate => candidate.id !== paper.id)
+        .map(candidate => {
+            let score = 0;
+            if (candidate.subject === paper.subject) score += 2;
+            if (candidate.level === paper.level) score += 1;
+            return { ...candidate, _score: score };
+        })
+        .filter(candidate => candidate._score > 0)
+        .sort((a, b) => b._score - a._score || b.year - a.year || a.title.localeCompare(b.title))
+        .slice(0, limit);
+}
+
+/**
+ * Render related papers list in modal.
+ */
+function renderRelatedPapers(paper) {
+    const list = document.getElementById('relatedPapersList');
+    if (!list) return;
+
+    const related = getRelatedPapers(paper);
+    if (related.length === 0) {
+        list.innerHTML = '<p>No related papers found yet.</p>';
+        return;
+    }
+
+    list.innerHTML = related.map(item => `
+        <div class="related-paper-item">
+            <h4>${item.title}</h4>
+            <p>${item.subject} • ${item.level}</p>
+            <button class="btn-secondary" onclick="openRelatedPaper(${item.id})">Open</button>
+        </div>
+    `).join('');
+}
+
+function openRelatedPaper(paperId) {
+    closeRelatedPapers();
+    previewPaper(paperId);
+}
+
+function openRelatedPapers() {
+    if (!currentPreviewedPaper) return;
+    renderRelatedPapers(currentPreviewedPaper);
+    document.getElementById('relatedPapersModal').style.display = 'flex';
+}
+
+function closeRelatedPapers() {
+    const modal = document.getElementById('relatedPapersModal');
+    if (modal) modal.style.display = 'none';
 }
 
 /**
@@ -496,3 +556,16 @@ function toggleSection(id) {
     if (!el) return;
     el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
 }
+
+window.addEventListener('click', function(event) {
+    const previewModal = document.getElementById('previewModal');
+    const relatedModal = document.getElementById('relatedPapersModal');
+
+    if (previewModal && event.target === previewModal) {
+        closePreview();
+    }
+
+    if (relatedModal && event.target === relatedModal) {
+        closeRelatedPapers();
+    }
+});
