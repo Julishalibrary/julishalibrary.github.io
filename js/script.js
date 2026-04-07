@@ -299,6 +299,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+ * Smooth-scroll to papers section
+ */
+function scrollToPapers() {
+    const papersSection = document.getElementById('papers');
+    if (papersSection) {
+        papersSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+/**
  * Render all papers
  */
 function renderPapers(papers) {
@@ -346,6 +356,24 @@ function filterPapers() {
 }
 
 /**
+ * Filter papers by subject card selection
+ */
+function filterBySubject(subject) {
+    const normalizedSubject = String(subject || '').toLowerCase();
+    const filtered = papersData.filter(
+        paper => paper.subject.toLowerCase() === normalizedSubject
+    );
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.value = subject;
+    }
+
+    renderPapers(filtered);
+    scrollToPapers();
+}
+
+/**
  * Preview paper
  */
 function previewPaper(paperId) {
@@ -359,6 +387,19 @@ function previewPaper(paperId) {
     document.getElementById('previewYear').textContent = paper.year ? `Year: ${paper.year}` : '';
     document.getElementById('previewPages').textContent = `${paper.pages} pages`;
     document.getElementById('previewDescription').textContent = paper.description;
+    document.getElementById('previewRating').textContent = Number(paper.rating || 0).toFixed(1);
+    document.getElementById('previewDownloads').textContent = paper.downloads || 0;
+
+    const difficultyFeedback = document.getElementById('difficultyFeedback');
+    if (difficultyFeedback) {
+        difficultyFeedback.style.display = 'none';
+        difficultyFeedback.textContent = '';
+    }
+
+    const viewFullPreviewBtn = document.getElementById('viewFullPreviewBtn');
+    if (viewFullPreviewBtn) {
+        viewFullPreviewBtn.style.display = paper.pdfUrl ? 'inline-flex' : 'none';
+    }
 
     document.getElementById('previewModal').style.display = 'flex';
 
@@ -470,6 +511,74 @@ function downloadPaper(event, pdfUrl, title) {
 function downloadPreviewedPaper() {
     if (currentPreviewedPaper) {
         downloadPaper(null, currentPreviewedPaper.pdfUrl, currentPreviewedPaper.title);
+    }
+}
+
+/**
+ * Vote on paper difficulty
+ */
+function voteDifficulty(level) {
+    if (!currentPreviewedPaper || !level) return;
+
+    const key = 'difficultyVotes';
+    const votes = JSON.parse(localStorage.getItem(key) || '{}');
+    votes[currentPreviewedPaper.id] = level;
+    localStorage.setItem(key, JSON.stringify(votes));
+
+    const difficultyFeedback = document.getElementById('difficultyFeedback');
+    if (difficultyFeedback) {
+        difficultyFeedback.textContent = `Thanks! You voted "${level}" for "${currentPreviewedPaper.title}".`;
+        difficultyFeedback.style.display = 'block';
+    }
+}
+
+/**
+ * Open the current PDF in a new tab
+ */
+function viewFullPDF() {
+    if (!currentPreviewedPaper || !currentPreviewedPaper.pdfUrl) return;
+    window.open(currentPreviewedPaper.pdfUrl, '_blank', 'noopener');
+}
+
+/**
+ * Copy the current paper URL to clipboard
+ */
+function sharePaperLink() {
+    if (!currentPreviewedPaper) return;
+
+    const shareUrl = `${window.location.origin}${window.location.pathname}?paper=${currentPreviewedPaper.id}`;
+    const onSuccess = () => alert('Paper link copied to clipboard.');
+    const onFailure = () => alert(`Unable to copy automatically. Link: ${shareUrl}`);
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(onSuccess).catch(onFailure);
+        return;
+    }
+
+    onFailure();
+}
+
+/**
+ * Share the current paper via mail client
+ */
+function shareViaEmail() {
+    if (!currentPreviewedPaper) return;
+
+    const shareUrl = `${window.location.origin}${window.location.pathname}?paper=${currentPreviewedPaper.id}`;
+    const subject = encodeURIComponent(`Check out this paper: ${currentPreviewedPaper.title}`);
+    const body = encodeURIComponent(
+        `I found this paper on Julisha Library:\n\n${currentPreviewedPaper.title}\n${shareUrl}`
+    );
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+/**
+ * Close related papers modal
+ */
+function closeRelatedPapers() {
+    const relatedPapersModal = document.getElementById('relatedPapersModal');
+    if (relatedPapersModal) {
+        relatedPapersModal.style.display = 'none';
     }
 }
 

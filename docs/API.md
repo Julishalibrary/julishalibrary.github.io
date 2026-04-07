@@ -1,5 +1,23 @@
 # API Documentation 🔧
 
+## UI handler parity checklist
+
+Keep this checklist synchronized with every `onclick="..."` handler in `index.html`.
+
+- [x] `toggleDarkMode()` → `js/script.js::toggleDarkMode`
+- [x] `scrollToPapers()` → `js/script.js::scrollToPapers`
+- [x] `closeRelatedPapers()` → `js/script.js::closeRelatedPapers`
+- [x] `closePreview()` → `js/script.js::closePreview`
+- [x] `voteDifficulty('Easy' | 'Medium' | 'Hard')` → `js/script.js::voteDifficulty`
+- [x] `previousPage()` → `js/script.js::previousPage`
+- [x] `nextPage()` → `js/script.js::nextPage`
+- [x] `downloadPreviewedPaper()` → `js/script.js::downloadPreviewedPaper`
+- [x] `viewFullPDF()` → `js/script.js::viewFullPDF`
+- [x] `sharePaperLink()` → `js/script.js::sharePaperLink`
+- [x] `shareViaEmail()` → `js/script.js::shareViaEmail`
+- [x] `toggleSection('subjectsContent' | 'aboutContent' | 'contactContent' | 'newsletterContent')` → `js/script.js::toggleSection`
+- [x] `filterBySubject('Mathematics' | 'Physics' | 'Chemistry' | 'Biology' | 'English' | 'History' | 'Kiswahili')` → `js/script.js::filterBySubject`
+
 ## Papers Data Structure
 
 ### Overview
